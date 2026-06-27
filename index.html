@@ -3,187 +3,726 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Nama Anda] - PPC Pupuk & Pestisida Bersertifikat</title>
+    <title>PPC Bersertifikat | Jasa Sampling Pupuk & Pestisida Profesional</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary: #2E7D32; /* Hijau Pertanian */
-            --secondary: #1565C0; /* Biru Profesional */
-            --dark: #333;
-            --light: #f4f4f4;
-            --white: #fff;
+            --primary-color: #1B4D3E; /* Deep Forest Green */
+            --secondary-color: #F2994A; /* Safety Orange/Gold */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #F8F9FA;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--dark); background-color: var(--white); }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
         a { text-decoration: none; color: inherit; }
-        
-        /* Navigation */
-        nav { background: var(--white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-        .nav-links a { margin-left: 20px; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-        .btn-cta { background: var(--primary); color: var(--white); padding: 10px 20px; border-radius: 5px; font-weight: bold; }
-        .btn-cta:hover { background: #1b5e20; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
 
-        /* Hero Section */
-        header { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1625246333195-58197bd47d19?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover; background-position: center; height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px;
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
-        header h1 { font-size: 3rem; margin-bottom: 1rem; }
-        header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem auto; }
-        
-        /* Sections General */
-        section { padding: 4rem 10%; }
-        h2 { text-align: center; margin-bottom: 3rem; font-size: 2rem; color: var(--primary); }
-        
-        /* About & Credentials */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .credential-card { background: var(--light); padding: 20px; border-left: 5px solid var(--secondary); margin-top: 20px; }
-        
-        /* Services */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .service-card { background: var(--white); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; }
-        .service-card:hover { transform: translateY(-10px); }
-        .icon { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
 
-        /* Why Me */
-        .why-me { background: var(--secondary); color: var(--white); }
-        .why-me h2 { color: var(--white); }
-        .features { display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center; }
-        .feature-item { width: 30%; margin-bottom: 20px; }
+        .section-padding {
+            padding: 80px 0;
+        }
 
-        /* Contact */
-        .contact { text-align: center; background: var(--light); }
-        .contact-info { margin-top: 20px; font-size: 1.1rem; }
+        .text-center { text-align: center; }
         
-        /* Footer */
-        footer { background: var(--dark); color: var(--white); text-align: center; padding: 20px; margin-top: auto; }
+        .section-title {
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
 
-        /* Responsive */
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #d68b3e;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i { margin-right: 10px; color: var(--secondary-color); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .cta-wa {
+            background-color: #25D366;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(27, 77, 62, 0.8), rgba(27, 77, 62, 0.6)), url('https://images.unsplash.com/photo-1625246333195-58f214f77830?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* --- FEATURES / PROBLEM SOLUTION --- */
+        .features { background-color: var(--white); }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- ABOUT ME --- */
+        .about { background-color: var(--bg-light); }
+
+        .about-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-img img {
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .badge-bnsp {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--white);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .badge-bnsp i { color: var(--secondary-color); font-size: 1.5rem; }
+
+        .about-text { flex: 1; }
+
+        .check-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .check-list i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            background: #e0ece7;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        /* --- SERVICES --- */
+        .services { background-color: var(--white); }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .service-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .service-content { padding: 25px; }
+        
+        .service-content h3 { color: var(--primary-color); margin-bottom: 15px; }
+
+        /* --- PROCESS --- */
+        .process { background-color: var(--primary-color); color: var(--white); }
+        .process .section-title h2 { color: var(--white); }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .step-item {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            min-width: 200px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 20px;
+        }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* --- CONTACT --- */
+        .contact { background-color: var(--bg-light); }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .contact-info, .contact-form { flex: 1; min-width: 300px; }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .info-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-light);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #113329;
+            color: rgba(255,255,255,0.7);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .social-links { margin-bottom: 20px; }
+        .social-links a {
+            color: var(--white);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .social-links a:hover { color: var(--secondary-color); }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .feature-item { width: 100%; }
-            nav { flex-direction: column; gap: 10px; }
-            .nav-links { margin-top: 10px; }
-            .nav-links a { margin: 0 10px; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-wrapper { flex-direction: column; }
+            .process-steps { flex-direction: column; gap: 30px; }
         }
     </style>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">PPC [Nama Belakang Anda]</div>
-        <div class="nav-links">
-            <a href="#about">Tentang</a>
-            <a href="#services">Layanan</a>
-            <a href="#credentials">Sertifikasi</a>
-            <a href="#contact" class="btn-cta">Hubungi Saya</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
+    <!-- Header -->
     <header>
-        <div>
-            <h1>Petugas Pengambil Contoh (PPC)<br>Pupuk & Pestisida Bersertifikat</h1>
-            <p>Menjamin integritas sampel, akurasi data, dan kepatuhan regulasi untuk industri agribisnis Anda. Kompeten berdasarkan SKKNI & Standar BNSP.</p>
-            <a href="#contact" class="btn-cta" style="font-size: 1.1rem;">Konsultasi Sampling</a>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-leaf"></i> PPC Pro
+                </a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Saya</a></li>
+                    <li><a href="#services">Layanan</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="#contact" class="cta-wa"><i class="fa-brands fa-whatsapp"></i> Hubungi Saya</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="about-grid">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content" data-aos="fade-up">
+            <h1>Integritas Sampel,<br>Akurasi Data Agribisnis</h1>
+            <p>Jasa Petugas Pengambil Contoh (PPC) Pupuk & Pestisida Bersertifikat BNSP. Menjamin kepatuhan regulasi dan kualitas input untuk industri Anda.</p>
             <div>
-                <img src="https://via.placeholder.com/500x500?text=Foto+Profil+Anda" alt="Foto Profil" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                <a href="#contact" class="btn btn-primary">Konsultasi Gratis</a>
+                <a href="#services" class="btn btn-outline">Lihat Layanan</a>
             </div>
-            <div>
-                <h2 style="text-align: left;">Profesionalisme dalam Setiap Sampel</h2>
-                <p>Halo, saya <strong>[Nama Lengkap Anda]</strong>. Sebagai PPC bersertifikat, saya memahami bahwa kualitas hasil uji laboratorium sangat bergantung pada kualitas pengambilan sampel.</p>
-                <br>
-                <p>Dengan pengalaman di bidang pengawasan mutu sarana pertanian, saya membantu perusahaan distributor, importir, dan instansi pemerintah untuk melakukan sampling yang defensible secara hukum dan akurat secara statistik.</p>
-                
-                <div class="credential-card">
-                    <h4><i class="fas fa-certificate"></i> Sertifikasi Kompetensi</h4>
-                    <p>Petugas Pengambil Contoh (PPC) Pupuk & Pestisida</p>
-                    <small>Lembaga Sertifikasi Profesi (LSP) Terlisensi BNSP</small>
+        </div>
+    </section>
+
+    <!-- Features / Value Proposition -->
+    <section class="section-padding features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-flask-vial feature-icon"></i>
+                    <h3>Anti Kontaminasi</h3>
+                    <p>Teknik sampling steril dan representatif untuk mencegah bias hasil laboratorium.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-file-contract feature-icon"></i>
+                    <h3>Kepatuhan Regulasi</h3>
+                    <p>Proses sesuai standar Permentan & SNI. Aman dari sanksi regulator.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-hand-holding-dollar feature-icon"></i>
+                    <h3>Efisiensi Biaya</h3>
+                    <p>Deteksi dini pupuk/pestisida sub-standar untuk menyelamatkan budget produksi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-img" data-aos="fade-right">
+                    <!-- Placeholder Image: Professional with Clipboard/PPE -->
+                    <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop" alt="PPC Profesional">
+                    <div class="badge-bnsp">
+                        <i class="fa-solid fa-certificate"></i>
+                        <div>
+                            <strong>Bersertifikat</strong>
+                            <span style="display:block; font-size:0.8rem;">BNSP & SKKNI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <div class="section-title" style="margin-left: 0; display: block; text-align: left;">
+                        <h2>Tentang Saya</h2>
+                    </div>
+                    <p style="margin-bottom: 20px;">
+                        Saya adalah profesional bersertifikat di bidang pengambilan contoh (sampling) komoditas pertanian. Dengan pengalaman lebih dari 5 tahun, saya membantu perusahaan agribisnis, importir, dan dinas terkait untuk memastikan kualitas pupuk dan pestisida yang beredar.
+                    </p>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-check"></i> Sertifikat Kompetensi Kerja (SKKNI) Bidang Pertanian</li>
+                        <li><i class="fa-solid fa-check"></i> Ahli Metode Sampling (Random, Quartering, Systematic)</li>
+                        <li><i class="fa-solid fa-check"></i> Pemahaman Karakteristik Fisik & Kimia Agroinput</li>
+                        <li><i class="fa-solid fa-check"></i> Jaringan Laboratorium Terakreditasi KAN</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 20px;">Hubungi Saya</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" style="background-color: #f9f9f9;">
-        <h2>Layanan Profesional</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-flask icon"></i>
-                <h3>Sampling Pupuk</h3>
-                <p>Pengambilan contoh pupuk kimia, organik, dan hayati sesuai SNI dan metode statistik yang berlaku untuk uji registrasi atau pengawasan pasar.</p>
+    <section id="services" class="section-padding services">
+        <div class="container">
+            <div class="text-center section-title">
+                <h2>Layanan Profesional</h2>
             </div>
-            <div class="service-card">
-                <i class="fas fa-bug icon"></i>
-                <h3>Sampling Pestisida</h3>
-                <p>Prosedur pengambilan sampel pestisida formulasi maupun teknis dengan protokol keamanan tinggi untuk mencegah kontaminasi silang.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-file-contract icon"></i>
-                <h3>Berita Acara Sampling</h3>
-                <p>Penyusunan dokumen legal (BAS) yang kuat sebagai alat bukti dalam sengketa mutu atau klaim garansi produk.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-search icon"></i>
-                <h3>Audit Gudang & Labeling</h3>
-                <p>Pemeriksaan kesesuaian label, kondisi penyimpanan, dan kelengkapan izin edar di lapangan.</p>
+            <div class="service-grid">
+                <!-- Service 1 -->
+                <div class="service-card" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=600&auto=format&fit=crop" alt="Sampling Pupuk" class="service-img">
+                    <div class="service-content">
+                        <h3>Sampling Pupuk</h3>
+                        <p>Pengambilan sampel pupuk Urea, NPK, Organik, dan Hayati di gudang, pelabuhan, atau pabrik dengan metode statistik yang valid.</p>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1615811361523-6bd03c770b44?q=80&w=600&auto=format&fit=crop" alt="Sampling Pestisida" class="service-img">
+                    <div class="service-content">
+                        <h3>Sampling Pestisida</h3>
+                        <p>Verifikasi dan sampling untuk Insektisida, Fungisida, dan Herbisida. Termasuk pemeriksaan label dan kondisi kemasan.</p>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop" alt="Konsultasi & Supervisi" class="service-img">
+                    <div class="service-content">
+                        <h3>Supervisi & Dokumentasi</h3>
+                        <p>Penyusunan Berita Acara Sampling (BAS), labeling, sealing, dan pendampingan saat inspeksi regulator.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Me -->
-    <section class="why-me">
-        <h2>Mengapa Memilih Jasa Saya?</h2>
-        <div class="features">
-            <div class="feature-item">
-                <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h3>Legalitas Terjamin</h3>
-                <p>Sampel diambil oleh personel bersertifikat resmi negara (BNSP).</p>
+    <!-- Process Section -->
+    <section class="section-padding process">
+        <div class="container">
+            <div class="text-center section-title">
+                <h2>Alur Kerja</h2>
             </div>
-            <div class="feature-item">
-                <i class="fas fa-microscope" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h3>Akurasi Tinggi</h3>
-                <p>Mengikuti prosedur baku untuk memastikan sampel representatif.</p>
+            <div class="process-steps">
+                <div class="step-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h4>Perencanaan</h4>
+                    <p>Menentukan lot, jumlah sampel, dan metode acak.</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h4>Eksekusi</h4>
+                    <p>Pengambilan sampel di lokasi dengan APD lengkap.</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h4>Sealing</h4>
+                    <p>Pengemasan, labeling, dan rantai penjagaan (CoC).</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <h4>Serah Terima</h4>
+                    <p>Handover ke laboratorium terakreditasi.</p>
+                </div>
             </div>
-            <div class="feature-item">
-                <i class="fas fa-clock" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h3>Responsif</h3>
-                <p>Siap turun ke lapangan (gudang/pelabuhan/lahan) sesuai jadwal Anda.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="text-center section-title">
+                <h2>Dokumentasi Lapangan</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="fade-in"><img src="https://images.unsplash.com/photo-1595844948332-6a75d5143d93?q=80&w=600&auto=format&fit=crop" alt="Kerja Lapangan 1"></div>
+                <div class="gallery-item" data-aos="fade-in"><img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=600&auto=format&fit=crop" alt="Kerja Lapangan 2"></div>
+                <div class="gallery-item" data-aos="fade-in"><img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=600&auto=format&fit=crop" alt="Kerja Lapangan 3"></div>
+                <div class="gallery-item" data-aos="fade-in"><img src="https://images.unsplash.com/photo-1589923188900-a1f9a2d8d827?q=80&w=600&auto=format&fit=crop" alt="Kerja Lapangan 4"></div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Hubungi Saya</h2>
-        <p>Butuh jasa sampling untuk keperluan registrasi, impor, atau pengawasan? Hubungi saya untuk diskusi lebih lanjut.</p>
-        
-        <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> email@anda.com</p>
-            <p><i class="fas fa-phone"></i> +62 812-XXXX-XXXX (WhatsApp)</p>
-            <p><i class="fas fa-map-marker-alt"></i> Berbasis di [Kota Anda], Siap Tugas ke Seluruh Indonesia</p>
-        </div>
-        
-        <div style="margin-top: 30px;">
-            <a href="https://wa.me/62812XXXXXXX" class="btn-cta"><i class="fab fa-whatsapp"></i> Chat via WhatsApp</a>
+    <section id="contact" class="section-padding contact">
+        <div class="container">
+            <div class="text-center section-title">
+                <h2>Hubungi Saya</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Siap Bekerja Sama?</h3>
+                    <p style="margin-bottom: 30px;">Pastikan bisnis agribisnis Anda aman secara regulasi. Hubungi saya untuk jadwal sampling atau konsultasi.</p>
+                    
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Telepon / WhatsApp</strong>
+                            <p>+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>ppc.profesional@email.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>Area Layanan</strong>
+                            <p>Jabodetabek, Jawa Barat, & Jawa Tengah</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email Perusahaan" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>Pilih Layanan</option>
+                                <option>Sampling Pupuk</option>
+                                <option>Sampling Pestisida</option>
+                                <option>Konsultasi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" placeholder="Pesan / Detail Kebutuhan"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 [Nama Anda] - PPC Pupuk & Pestisida Bersertifikat. All Rights Reserved.</p>
+        <div class="container">
+            <a href="#" class="footer-logo">PPC Pro</a>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            <p>&copy; 2026 PPC Pro. All Rights Reserved.</p>
+        </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animate On Scroll
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
