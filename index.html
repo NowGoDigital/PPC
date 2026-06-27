@@ -81,26 +81,43 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
         }
 
-        /* --- 3. HEADER (FIXED) --- */
+        /* --- 3. HEADER (UPDATED LOGO STYLE) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 20px 0; transition: 0.4s;
+            padding: 15px 0; transition: 0.4s;
             background: var(--primary-dark);
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            height: 80px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
         }
         header.scrolled {
             background: rgba(6, 78, 59, 0.98);
-            padding: 15px 0;
+            padding: 10px 0;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
-        nav { display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         
-        .logo { 
+        /* Logo Styling Baru */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .logo-main { 
             font-size: 1.6rem; font-weight: 700; color: var(--white); 
             font-family: 'Playfair Display', serif; letter-spacing: -0.5px;
         }
-        .logo span { color: var(--accent-gold); }
+        .logo-main span { color: var(--accent-gold); }
+        
+        .logo-desc {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
         
         .nav-links { display: flex; gap: 35px; align-items: center; }
         .nav-links a { color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; }
@@ -256,7 +273,7 @@
         .sop-step h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--white); }
         .sop-step p { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
-        /* --- 9. GALLERY MODERN (DENGAN DESKRIPSI) --- */
+        /* --- 9. GALLERY MODERN --- */
         .gallery-grid-modern {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -270,7 +287,7 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             background: var(--white);
-            height: 400px; /* Tinggi kartu seragam */
+            height: 400px;
             cursor: pointer;
         }
 
@@ -287,7 +304,6 @@
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Overlay Effect */
         .gallery-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -306,21 +322,10 @@
             color: var(--white);
         }
 
-        /* Hover Actions */
-        .gallery-card:hover .gallery-img-box img {
-            transform: scale(1.1);
-        }
+        .gallery-card:hover .gallery-img-box img { transform: scale(1.1); }
+        .gallery-card:hover .gallery-overlay { opacity: 1; visibility: visible; }
+        .gallery-card:hover .overlay-content { transform: translateY(0); }
 
-        .gallery-card:hover .gallery-overlay {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .gallery-card:hover .overlay-content {
-            transform: translateY(0);
-        }
-
-        /* Typography in Overlay */
         .gallery-tag {
             background: var(--accent-gold);
             color: var(--primary-dark);
@@ -440,7 +445,12 @@
     <header id="navbar">
         <div class="container">
             <nav>
-                <a href="#" class="logo">AGRI<span>SAMPLE</span>.</a>
+                <!-- BAGIAN LOGO YANG DIUBAH -->
+                <a href="#" class="logo-container">
+                    <div class="logo-main">PPC <span>Certified</span></div>
+                    <div class="logo-desc">Jasa Sampling Pupuk & Pestisida Profesional</div>
+                </a>
+                
                 <ul class="nav-links">
                     <li><a href="#home">Beranda</a></li>
                     <li><a href="#about">Profil</a></li>
@@ -573,7 +583,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section (UPDATED WITH DESCRIPTIONS) -->
+    <!-- Gallery Section -->
     <section id="gallery" class="section-padding">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -585,8 +595,7 @@
             </div>
             
             <div class="gallery-grid-modern">
-                
-                <!-- Item 1: Sampling Pupuk Curah -->
+                <!-- Item 1 -->
                 <div class="gallery-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="gallery-img-box">
                         <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop" alt="Sampling Pupuk Curah">
@@ -601,7 +610,7 @@
                     </div>
                 </div>
 
-                <!-- Item 2: Sealing & Labeling -->
+                <!-- Item 2 -->
                 <div class="gallery-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="gallery-img-box">
                         <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop" alt="Proses Sealing Sampel">
@@ -616,7 +625,7 @@
                     </div>
                 </div>
 
-                <!-- Item 3: Pestisida Cair -->
+                <!-- Item 3 -->
                 <div class="gallery-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="gallery-img-box">
                         <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop" alt="Sampling Pestisida">
@@ -631,7 +640,7 @@
                     </div>
                 </div>
 
-                <!-- Item 4: Dokumentasi Berita Acara -->
+                <!-- Item 4 -->
                 <div class="gallery-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="gallery-img-box">
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop" alt="Penandatanganan BAS">
@@ -646,7 +655,7 @@
                     </div>
                 </div>
 
-                <!-- Item 5: Alat Sampling -->
+                <!-- Item 5 -->
                 <div class="gallery-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="gallery-img-box">
                         <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop" alt="Alat Sampling Steril">
@@ -661,7 +670,7 @@
                     </div>
                 </div>
 
-                 <!-- Item 6: Pupuk Organik -->
+                 <!-- Item 6 -->
                  <div class="gallery-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="gallery-img-box">
                         <img src="https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop" alt="Sampling Pupuk Organik">
@@ -734,7 +743,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col footer-about">
-                    <a href="#" class="logo" style="margin-bottom: 20px; display: block;">AGRI<span style="color:var(--accent-gold)">SAMPLE</span>.</a>
+                    <a href="#" class="logo-container" style="margin-bottom: 20px; display: inline-block;">
+                        <div class="logo-main">PPC <span style="color:var(--accent-gold)">Certified</span></div>
+                    </a>
                     <p>Mitra terpercaya untuk jasa sampling pupuk dan pestisida bersertifikat BNSP. Kami menjamin integritas data dan kepatuhan terhadap standar nasional Indonesia.</p>
                     <div class="social-icons">
                         <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
@@ -764,7 +775,7 @@
                 <div class="footer-col">
                     <h4>Hubungi Kami</h4>
                     <ul class="footer-contact">
-                        <li><i class="fa-solid fa-location-dot"></i><span>Jl. Agribisnis No. 88, Bogor,<br>Jawa Barat, Indonesia</span></li>
+                        <li><i class="fa-solid fa-location-dot"></i><span>Jl. Agribisnis No. 88, Mataram,<br>Lombok - NTB</span></li>
                         <li><i class="fa-solid fa-phone"></i><span>+62 812-3456-7890</span></li>
                         <li><i class="fa-solid fa-envelope"></i><span>info@agrisample.id</span></li>
                     </ul>
@@ -817,10 +828,10 @@
             const hp = document.getElementById('hp').value;
 
             // Nomor WhatsApp Tujuan (Ganti dengan nomor Anda, format 62...)
-            const nomorWA = "6281234567890"; 
+            const nomorWA = "628175761165"; 
 
             // Buat Narasi Pesan
-            const pesan = `Halo Admin AGRI SAMPLE, saya ingin konsultasi terkait jasa sampling.%0A%0A` +
+            const pesan = `Halo Admin PPC Certified, saya ingin konsultasi terkait jasa sampling.%0A%0A` +
                           `*DATA PEMOHON:*%0A` +
                           `👤 Nama: ${nama}%0A` +
                           `🏢 Perusahaan: ${perusahaan}%0A` +
