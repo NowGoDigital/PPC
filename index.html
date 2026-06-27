@@ -15,28 +15,24 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- 1. VARIABLES & RESET (HIGH CONTRAST) --- */
+        /* --- 1. VARIABLES & RESET --- */
         :root {
-            --primary-dark: #064e3b;   /* Sangat Gelap untuk Header/Footer */
-            --primary-main: #10b981;   /* Emerald Bright untuk Aksen Hero */
-            --primary-mid: #059669;    /* Tengah */
-            --accent-gold: #fbbf24;    /* Emas Cerah (Amber) agar kontras tinggi */
-            --accent-gold-dark: #d97706;
-            --text-on-dark: #ffffff;
-            --text-on-light: #1f2937;
+            --primary-dark: #064e3b;   /* Hijau Tua Gelap */
+            --primary-mid: #059669;    /* Hijau Emerald */
+            --accent-gold: #fbbf24;    /* Emas Cerah */
             --white: #ffffff;
             
-            /* Gradasi Hero yang Kontras: Putih -> Hijau Emerald */
+            /* Gradasi Hero: Putih -> Hijau Muda -> Hijau Tua */
             --hero-gradient: linear-gradient(135deg, #ffffff 0%, #ecfdf5 40%, #064e3b 100%);
             
-            --shadow-card: 0 20px 40px -10px rgba(6, 78, 59, 0.2);
+            --shadow-soft: 0 20px 40px -10px rgba(6, 78, 59, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--text-on-light);
+            color: #1f2937;
             background-color: #f9fafb;
             overflow-x: hidden;
             line-height: 1.7;
@@ -67,7 +63,7 @@
             display: inline-block;
             padding: 18px 45px;
             background: var(--accent-gold);
-            color: var(--primary-dark); /* Teks gelap di tombol emas agar kontras */
+            color: var(--primary-dark);
             font-weight: 700;
             border-radius: 50px;
             box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4);
@@ -78,15 +74,14 @@
         .btn-premium:hover { 
             transform: translateY(-3px); 
             background: var(--white);
-            color: var(--primary-dark);
             box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
         }
 
-        /* --- 3. HEADER (SOLID DARK CONTRAST) --- */
+        /* --- 3. HEADER (SOLID DARK) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 20px 0; transition: 0.4s;
-            background: var(--primary-dark); /* Solid Dark Green */
+            background: var(--primary-dark);
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         header.scrolled {
@@ -103,9 +98,7 @@
         .logo span { color: var(--accent-gold); }
         
         .nav-links { display: flex; gap: 35px; align-items: center; }
-        .nav-links a { 
-            color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; 
-        }
+        .nav-links a { color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; }
         .nav-links a:hover { color: var(--accent-gold); }
         
         .cta-menu {
@@ -114,19 +107,17 @@
             color: var(--primary-dark) !important;
             border-radius: 50px;
             font-weight: 700 !important;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
         }
         .cta-menu:hover { background: var(--white); color: var(--primary-dark) !important; }
         
         .menu-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
 
-        /* --- 4. HERO SECTION (HIGH CONTRAST GRADIENT) --- */
+        /* --- 4. HERO SECTION (BLENDING FRAME) --- */
         .hero-split {
             min-height: 100vh;
             display: flex; align-items: center;
             position: relative;
             padding-top: 80px;
-            /* Gradasi Kuat: Putih di kiri (untuk teks), Hijau Tua di kanan (untuk foto) */
             background: var(--hero-gradient);
         }
         
@@ -137,14 +128,13 @@
         .hero-text h1 {
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1.1; margin-bottom: 25px;
-            color: var(--primary-dark); /* Kontras tinggi di background putih */
+            color: var(--primary-dark);
         }
         .hero-text h1 span {
             color: var(--primary-mid);
             position: relative;
             display: inline-block;
         }
-        /* Highlight Emas di Bawah Teks */
         .hero-text h1 span::after {
             content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 15px;
             background: var(--accent-gold); opacity: 0.3; z-index: -1; transform: skewX(-10deg);
@@ -156,15 +146,20 @@
 
         .hero-badges { display: flex; gap: 15px; margin-bottom: 35px; flex-wrap: wrap; }
         .badge {
-            background: rgba(6, 78, 59, 0.1); border: 1px solid var(--primary-dark);
+            background: rgba(255, 255, 255, 0.5); border: 1px solid var(--primary-dark);
             color: var(--primary-dark); padding: 10px 20px; border-radius: 8px;
             font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 8px;
+            backdrop-filter: blur(5px);
         }
 
-        /* Hero Image Styling */
-        .hero-image-container { position: relative; display: flex; justify-content: center; }
+        /* --- IMPROVED PHOTO CONTAINER (BLENDING EFFECT) --- */
+        .hero-image-container { 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+        }
         
-        /* Blob Background Animasi - Warna Emas/Hijau */
+        /* Blob Background Animasi */
         .blob-bg {
             position: absolute; width: 120%; height: 120%; top: -10%; left: -10%;
             background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
@@ -172,21 +167,42 @@
             z-index: 0; animation: morph 8s ease-in-out infinite;
         }
 
+        /* Frame Foto Utama - Menyatu dengan Background */
         .hero-img-frame {
             position: relative; z-index: 2; width: 100%; max-width: 450px;
-            border-radius: 40px; overflow: hidden;
-            border: 8px solid rgba(255,255,255,0.3); /* Border semi-transparan */
-            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.3); /* Bayangan dalam untuk kontras */
+            border-radius: 40px; 
+            overflow: hidden;
+            /* Border Tebal dengan Warna Gradasi (Hijau Muda ke Transparan) */
+            border: 12px solid rgba(236, 253, 245, 0.6); 
+            /* Efek Kaca (Glassmorphism) agar menyatu */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            /* Bayangan Halus Berwarna Hijau (Bukan Hitam) */
+            box-shadow: 0 30px 60px -10px rgba(6, 78, 59, 0.3);
             animation: float 6s ease-in-out infinite;
-            background: var(--white);
         }
 
+        .hero-img-frame img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Kartu Detail Melayang - Terintegrasi */
         .detail-card {
-            position: absolute; bottom: 40px; left: -30px; background: var(--white);
-            padding: 20px 25px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            z-index: 3; display: flex; align-items: center; gap: 15px;
+            position: absolute; 
+            bottom: 40px; 
+            left: -30px; 
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 3; 
+            display: flex; align-items: center; gap: 15px;
             animation: float 7s ease-in-out infinite reverse;
-            border-left: 6px solid var(--accent-gold);
+            border-left: 5px solid var(--accent-gold);
+            backdrop-filter: blur(10px);
         }
 
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
@@ -195,7 +211,7 @@
         /* --- 5. STATS BAR --- */
         .stats-bar {
             background: var(--white); padding: 50px 40px; margin-top: -60px;
-            position: relative; z-index: 10; box-shadow: var(--shadow-card);
+            position: relative; z-index: 10; box-shadow: var(--shadow-soft);
             border-radius: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
             border-bottom: 4px solid var(--accent-gold);
         }
@@ -205,7 +221,7 @@
 
         /* --- 6. ABOUT SECTION --- */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .about-img-main { width: 100%; border-radius: 30px; box-shadow: var(--shadow-card); }
+        .about-img-main { width: 100%; border-radius: 30px; box-shadow: var(--shadow-soft); }
         .experience-badge {
             position: absolute; bottom: -25px; right: -25px; background: var(--primary-dark);
             color: var(--white); padding: 25px; border-radius: 20px; text-align: center; 
@@ -227,7 +243,7 @@
             background: #fdfdfd; padding: 45px 35px; border-radius: 20px;
             transition: 0.4s; border: 1px solid #eee; position: relative; overflow: hidden;
         }
-        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-card); border-color: var(--accent-gold); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-soft); border-color: var(--accent-gold); }
         .service-icon { 
             width: 70px; height: 70px; background: var(--primary-dark); 
             border-radius: 15px; display: flex; align-items: center; justify-content: center;
@@ -237,7 +253,7 @@
         .service-link i { margin-left: 10px; transition: 0.3s; }
         .service-link:hover i { margin-left: 15px; }
 
-        /* --- 8. SOP SECTION (DARK MODE CONTRAST) --- */
+        /* --- 8. SOP SECTION --- */
         .sop-section {
             background: var(--primary-dark);
             color: var(--white);
@@ -284,7 +300,7 @@
         .gallery-item:hover img { transform: scale(1.1); }
 
         .contact-wrapper {
-            background: var(--white); border-radius: 30px; box-shadow: var(--shadow-card);
+            background: var(--white); border-radius: 30px; box-shadow: var(--shadow-soft);
             overflow: hidden; display: flex;
         }
         .contact-info { background: var(--primary-dark); color: white; padding: 60px; flex: 1; }
@@ -314,7 +330,7 @@
 </head>
 <body>
 
-    <!-- Header Menu (Solid Dark) -->
+    <!-- Header Menu -->
     <header id="navbar">
         <div class="container">
             <nav>
@@ -332,12 +348,12 @@
         </div>
     </header>
 
-    <!-- Hero Section (High Contrast Gradient) -->
+    <!-- Hero Section -->
     <section id="home" class="hero-split">
         <div class="container">
             <div class="hero-wrapper">
                 
-                <!-- Kiri: Teks (Background Putih/Terang) -->
+                <!-- Kiri: Teks -->
                 <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
                     <div class="hero-badges">
                         <div class="badge"><i class="fa-solid fa-certificate"></i> BNSP Certified</div>
@@ -356,14 +372,16 @@
                     </div>
                 </div>
 
-                <!-- Kanan: Foto (Background Hijau Tua/Gelap) -->
+                <!-- Kanan: Foto dengan Frame Menyatu -->
                 <div class="hero-image-container" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="blob-bg"></div>
                     
+                    <!-- Frame Foto: Blending dengan Background -->
                     <div class="hero-img-frame">
                         <img src="PPC.jpg" alt="Petugas PPC Profesional">
                     </div>
 
+                    <!-- Kartu Melayang -->
                     <div class="detail-card">
                         <div style="background:var(--primary-dark); padding:10px; border-radius:50%; color:var(--accent-gold);">
                             <i class="fa-solid fa-check-double"></i>
@@ -417,7 +435,7 @@
                         <span>Tentang Ahli</span>
                         <h2>Komitmen pada<br>Akuritas & Integritas</h2>
                     </div>
-                    <p style="margin-bottom: 30px; color: var(--text-on-light);">
+                    <p style="margin-bottom: 30px; color: #374151;">
                         Sampling bukan sekadar mengambil barang. Ini adalah fondasi hukum dari kualitas produk agribisnis. Dengan sertifikasi BNSP, saya memastikan setiap langkah pengambilan contoh pupuk dan pestisida bebas dari bias dan kontaminasi.
                     </p>
                     <ul class="feature-list">
