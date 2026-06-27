@@ -81,33 +81,34 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
         }
 
-        /* --- 3. HEADER (UPDATED LAYOUT - MEPET KIRI & KANAN) --- */
+                /* --- 3. HEADER (FULL WIDTH & MEPET) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 15px 0; transition: 0.4s;
             background: var(--primary-dark);
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-        }
-        header.scrolled {
-            background: rgba(6, 78, 59, 0.98);
-            padding: 10px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: 0.4s;
         }
         
-        /* PERBAIKAN: Container Header dibuat lebih lebar padding-nya agar mepet */
-        header .container {
-            max-width: 100%; /* Memenuhi lebar layar */
-            padding: 0 3%;   /* Jarak ke pinggir layar hanya 3% (sekitar 40-50px) */
+        header.scrolled {
+            background: rgba(6, 78, 59, 0.98);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
+        /* Nav langsung memenuhi lebar layar, tanpa container pembatas */
         nav { 
             display: flex; 
             justify-content: space-between; /* Logo mentok kiri, Menu mentok kanan */
             align-items: center; 
-            width: 100%; 
+            width: 100%;
+            padding: 20px 40px; /* Jarak dari tepi layar kiri & kanan (bisa disesuaikan) */
+            height: 80px;
+            box-sizing: border-box;
+        }
+
+        /* Jika scroll, padding sedikit mengecil agar rapi */
+        header.scrolled nav {
+            padding: 15px 40px;
+            height: 70px;
         }
         
         /* Logo Styling */
@@ -116,6 +117,8 @@
             flex-direction: column;
             line-height: 1.2;
             text-align: left;
+            /* Pastikan tidak ada margin kiri tambahan */
+            margin-left: 0; 
         }
         .logo-main { 
             font-size: 1.6rem; font-weight: 700; color: var(--white); 
@@ -133,7 +136,7 @@
         }
         
         /* Menu Navigasi */
-        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links { display: flex; gap: 30px; align-items: center; margin-right: 0; }
         .nav-links a { color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; }
         .nav-links a:hover { color: var(--accent-gold); }
         
@@ -144,9 +147,26 @@
             border-radius: 50px;
             font-weight: 700 !important;
         }
-        .cta-menu:hover { background: var(--white); color: var(--primary-dark) !important; }
         
         .menu-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+
+        /* Responsive Header Mobile */
+        @media (max-width: 992px) {
+            nav { padding: 15px 20px; height: 70px; } /* Padding lebih kecil di HP */
+            
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 70px; left: 0; width: 100%; 
+                background: var(--primary-dark); 
+                flex-direction: column; 
+                padding: 20px; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+                gap: 20px;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+        }
 
         /* --- 4. HERO SECTION --- */
         .hero-split {
@@ -455,28 +475,27 @@
 </head>
 <body>
 
-    <!-- Header Menu -->
+        <!-- Header Menu -->
     <header id="navbar">
-        <div class="container">
-            <nav>
-                <!-- BAGIAN LOGO (RATA KIRI) -->
-                <a href="#" class="logo-container">
-                    <div class="logo-main">PPC <span>Certified</span></div>
-                    <div class="logo-desc">Jasa Sampling Pupuk & Pestisida Profesional</div>
-                </a>
-                
-                <!-- BAGIAN MENU (RATA KANAN) -->
-                <ul class="nav-links">
-                    <li><a href="#home">Beranda</a></li>
-                    <li><a href="#about">Profil</a></li>
-                    <li><a href="#services">Layanan</a></li>
-                    <li><a href="#sop">SOP Kerja</a></li>
-                    <li><a href="#gallery">Galeri</a></li>
-                    <li><a href="#contact" class="cta-menu">Hubungi Saya</a></li>
-                </ul>
-                <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
-            </nav>
-        </div>
+        <!-- Hapus div container di sini agar full width -->
+        <nav>
+            <!-- BAGIAN LOGO (RATA KIRI) -->
+            <a href="#" class="logo-container">
+                <div class="logo-main">PPC <span>Certified</span></div>
+                <div class="logo-desc">Jasa Sampling Pupuk & Pestisida Profesional</div>
+            </a>
+            
+            <!-- BAGIAN MENU (RATA KANAN) -->
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Profil</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#sop">SOP Kerja</a></li>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#contact" class="cta-menu">Hubungi Saya</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+        </nav>
     </header>
 
     <!-- Hero Section -->
