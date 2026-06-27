@@ -73,6 +73,7 @@
             border: none;
             cursor: pointer;
             width: 100%;
+            text-align: center;
         }
         .btn-premium:hover { 
             transform: translateY(-3px); 
@@ -200,6 +201,7 @@
 
         /* --- 6. ABOUT SECTION --- */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-img-wrapper { position: relative; }
         .about-img-main { width: 100%; border-radius: 30px; box-shadow: var(--shadow-soft); }
         .experience-badge {
             position: absolute; bottom: -25px; right: -25px; background: var(--primary-dark);
@@ -254,7 +256,7 @@
         .sop-step h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--white); }
         .sop-step p { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
-                /* --- 9. GALLERY MODERN --- */
+        /* --- 9. GALLERY MODERN (DENGAN DESKRIPSI) --- */
         .gallery-grid-modern {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -356,14 +358,7 @@
             padding-top: 10px;
         }
 
-        @media (max-width: 768px) {
-            .gallery-grid-modern { grid-template-columns: 1fr; }
-            .gallery-card { height: 350px; }
-            /* Di mobile, overlay bisa dibuat selalu muncul atau tetap hover tergantung preferensi. 
-               Saat ini diset hover agar konsisten. */
-        }
-
-        /* --- 10. CONTACT SECTION (UPDATED FORM) --- */
+        /* --- 10. CONTACT SECTION --- */
         .contact-wrapper {
             background: var(--white); border-radius: 30px; box-shadow: var(--shadow-soft);
             overflow: hidden; display: flex;
@@ -411,12 +406,27 @@
             .hero-image-container { margin-top: 50px; }
             .stats-bar { grid-template-columns: 1fr 1fr; margin-top: 30px; }
             .contact-wrapper { flex-direction: column; }
-            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--primary-dark); flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            
+            /* Mobile Menu Standard */
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 80px; left: 0; width: 100%; 
+                background: var(--primary-dark); 
+                flex-direction: column; 
+                padding: 20px; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
+            
             .timeline-line { display: none; }
             .detail-card { left: 50%; transform: translateX(-50%); bottom: -20px; width: 80%; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            
+            /* Gallery Responsive */
+            .gallery-grid-modern { grid-template-columns: 1fr; }
+            .gallery-card { height: 350px; }
         }
         @media (max-width: 576px) {
             .footer-grid { grid-template-columns: 1fr; }
@@ -563,7 +573,7 @@
         </div>
     </section>
 
-        <!-- Gallery Section (UPDATED) -->
+    <!-- Gallery Section (UPDATED WITH DESCRIPTIONS) -->
     <section id="gallery" class="section-padding">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -670,7 +680,7 @@
         </div>
     </section>
 
-    <!-- Contact Section (LENGKAP DENGAN FORMULIR WHATSAPP) -->
+    <!-- Contact Section -->
     <section id="contact" class="section-padding">
         <div class="container">
             <div class="section-title">
@@ -680,7 +690,7 @@
             <div class="contact-wrapper" data-aos="fade-up">
                 <div class="contact-info">
                     <h3 style="font-size: 2rem; margin-bottom: 20px;">Data Kontak</h3>
-                    <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping untuk terhubung langsung dengan kami via WhatsApp. Data Anda akan kami gunakan untuk menyusun rencana sampling yang akurat.</p>
+                    <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping untuk terhubung langsung dengan kami via WhatsApp.</p>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-phone" style="color: var(--accent-gold); margin-right: 15px;"></i> +62 812-3456-7890</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppc.expert@email.com</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); margin-right: 15px;"></i> Jabodetabek & Jawa Barat</div>
@@ -776,12 +786,24 @@
             else header.classList.remove('scrolled');
         });
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (Simple & Stable)
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // Ubah ikon hamburger jadi X
+                const icon = menuToggle.querySelector('i');
+                if(navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
 
         // FUNGSI KIRIM KE WHATSAPP
         function kirimKeWhatsApp(e) {
