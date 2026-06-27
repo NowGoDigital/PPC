@@ -617,7 +617,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+        <!-- Gallery Section -->
     <section id="gallery" class="section-padding">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -628,97 +628,8 @@
                 </p>
             </div>
             
-            <div class="gallery-grid-modern">
-                <!-- Item 1 -->
-                <div class="gallery-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="gallery-img-box">
-                        <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop" alt="Sampling Pupuk Curah">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <span class="gallery-tag">Pupuk Anorganik</span>
-                                <h3>Sampling Lot Urea Curah</h3>
-                                <p><i class="fa-solid fa-location-dot"></i> Gudang Pelindo, Surabaya</p>
-                                <p class="desc-small">Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="gallery-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="gallery-img-box">
-                        <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop" alt="Proses Sealing Sampel">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <span class="gallery-tag">Chain of Custody</span>
-                                <h3>Segel & Labeling Resmi</h3>
-                                <p><i class="fa-solid fa-location-dot"></i> Laboratorium PT. XYZ</p>
-                                <p class="desc-small">Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="gallery-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="gallery-img-box">
-                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop" alt="Sampling Pestisida">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <span class="gallery-tag">Pestisida Cair</span>
-                                <h3>Verifikasi Insektisida</h3>
-                                <p><i class="fa-solid fa-location-dot"></i> Pabrik Cikarang, Bekasi</p>
-                                <p class="desc-small">Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="gallery-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="gallery-img-box">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop" alt="Penandatanganan BAS">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <span class="gallery-tag">Administrasi</span>
-                                <h3>Penandatanganan BAS</h3>
-                                <p><i class="fa-solid fa-location-dot"></i> Kantor Regulator</p>
-                                <p class="desc-small">Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui dua belah pihak.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="gallery-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="gallery-img-box">
-                        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop" alt="Alat Sampling Steril">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <span class="gallery-tag">Peralatan</span>
-                                <h3>Preparasi Alat Sampling</h3>
-                                <p><i class="fa-solid fa-location-dot"></i> Area Steril</p>
-                                <p class="desc-small">Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Item 6 -->
-                 <div class="gallery-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="gallery-img-box">
-                        <img src="https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop" alt="Sampling Pupuk Organik">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <span class="gallery-tag">Pupuk Organik</span>
-                                <h3>Sampling Kompos Granul</h3>
-                                <p><i class="fa-solid fa-location-dot"></i> Pabrik Bogor</p>
-                                <p class="desc-small">Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="gallery-grid-modern" id="galleryGrid">
+                <!-- Items will be loaded dynamically -->
             </div>
         </div>
     </section>
@@ -878,6 +789,94 @@
             window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
         }
     </script>
+
+        <script>
+        // LOAD GALLERY DATA FROM LOCALSTORAGE
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const stored = localStorage.getItem('galleryData');
+            
+            if (stored) {
+                const galleryData = JSON.parse(stored);
+                
+                if (galleryData.length === 0) {
+                    galleryGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">Belum ada item galeri.</p>';
+                    return;
+                }
+
+                galleryGrid.innerHTML = galleryData.map((item, index) => `
+                    <div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
+                        <div class="gallery-img-box">
+                            <img src="${item.image}" alt="${item.title}">
+                            <div class="gallery-overlay">
+                                <div class="overlay-content">
+                                    <span class="gallery-tag">${item.tag}</span>
+                                    <h3>${item.title}</h3>
+                                    <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
+                                    <p class="desc-small">${item.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                // Default data if localStorage is empty
+                const defaultData = [
+                    {
+                        tag: 'Pupuk Anorganik',
+                        title: 'Sampling Lot Urea Curah',
+                        location: 'Gudang Pelindo, Surabaya',
+                        description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas.',
+                        image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop'
+                    },
+                    {
+                        tag: 'Chain of Custody',
+                        title: 'Segel & Labeling Resmi',
+                        location: 'Laboratorium PT. XYZ',
+                        description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian.',
+                        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop'
+                    },
+                    {
+                        tag: 'Pestisida Cair',
+                        title: 'Verifikasi Insektisida',
+                        location: 'Pabrik Cikarang, Bekasi',
+                        description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch).',
+                        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop'
+                    },
+                    {
+                        tag: 'Administrasi',
+                        title: 'Penandatanganan BAS',
+                        location: 'Kantor Regulator',
+                        description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui dua belah pihak.',
+                        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'
+                    },
+                    {
+                        tag: 'Peralatan',
+                        title: 'Preparasi Alat Sampling',
+                        location: 'Area Steril',
+                        description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot.',
+                        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop'
+                    },
+                    {
+                        tag: 'Pupuk Organik',
+                        title: 'Sampling Kompos Granul',
+                        location: 'Pabrik Bogor',
+                        description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat.',
+                        image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop'
+                    }
+                ];
+                
+                localStorage.setItem('galleryData', JSON.stringify(defaultData));
+                loadGallery(); // Reload with default data
+            }
+        }
+
+        // Load gallery when page loads
+        document.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+
+
+    
 </body>
 </html>
 
