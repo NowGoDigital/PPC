@@ -112,12 +112,13 @@
         
         .menu-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
 
-        /* --- 4. HERO SECTION (BLENDING FRAME) --- */
+        /* --- 4. HERO SECTION --- */
         .hero-split {
             min-height: 100vh;
             display: flex; align-items: center;
             position: relative;
             padding-top: 80px;
+            padding-bottom: 120px; /* Tambahan padding bawah agar stats tidak nempel */
             background: var(--hero-gradient);
         }
         
@@ -152,14 +153,13 @@
             backdrop-filter: blur(5px);
         }
 
-        /* --- IMPROVED PHOTO CONTAINER (BLENDING EFFECT) --- */
+        /* --- PHOTO CONTAINER --- */
         .hero-image-container { 
             position: relative; 
             display: flex; 
             justify-content: center; 
         }
         
-        /* Blob Background Animasi */
         .blob-bg {
             position: absolute; width: 120%; height: 120%; top: -10%; left: -10%;
             background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
@@ -167,39 +167,23 @@
             z-index: 0; animation: morph 8s ease-in-out infinite;
         }
 
-        /* Frame Foto Utama - Menyatu dengan Background */
         .hero-img-frame {
             position: relative; z-index: 2; width: 100%; max-width: 450px;
             border-radius: 40px; 
             overflow: hidden;
-            /* Border Tebal dengan Warna Gradasi (Hijau Muda ke Transparan) */
             border: 12px solid rgba(236, 253, 245, 0.6); 
-            /* Efek Kaca (Glassmorphism) agar menyatu */
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            /* Bayangan Halus Berwarna Hijau (Bukan Hitam) */
             box-shadow: 0 30px 60px -10px rgba(6, 78, 59, 0.3);
             animation: float 6s ease-in-out infinite;
         }
 
-        .hero-img-frame img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            display: block;
-        }
+        .hero-img-frame img { width: 100%; height: auto; object-fit: cover; display: block; }
 
-        /* Kartu Detail Melayang - Terintegrasi */
         .detail-card {
-            position: absolute; 
-            bottom: 40px; 
-            left: -30px; 
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            z-index: 3; 
-            display: flex; align-items: center; gap: 15px;
+            position: absolute; bottom: 40px; left: -30px; background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 3; display: flex; align-items: center; gap: 15px;
             animation: float 7s ease-in-out infinite reverse;
             border-left: 5px solid var(--accent-gold);
             backdrop-filter: blur(10px);
@@ -208,16 +192,23 @@
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
         @keyframes morph { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        /* --- 5. STATS BAR --- */
+        /* --- 5. STATS BAR (DIPERBAIKI: LEBIH RAMPING) --- */
         .stats-bar {
-            background: var(--white); padding: 50px 40px; margin-top: -60px;
-            position: relative; z-index: 10; box-shadow: var(--shadow-soft);
-            border-radius: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
+            background: var(--white); 
+            /* Padding diperkecil dari 50px menjadi 25px agar tidak terlalu lebar */
+            padding: 25px 40px; 
+            /* Margin negatif disesuaikan agar pas di tengah-tengah section */
+            margin-top: -80px; 
+            position: relative; z-index: 10; 
+            box-shadow: var(--shadow-soft);
+            border-radius: 20px; 
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
             border-bottom: 4px solid var(--accent-gold);
         }
         .stat-item { text-align: center; }
-        .stat-number { font-size: 2.8rem; font-weight: 700; color: var(--primary-dark); display: block; font-family: 'Playfair Display', serif; }
-        .stat-label { font-size: 0.9rem; color: var(--primary-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+        /* Ukuran font sedikit disesuaikan agar proporsional dengan bar yang lebih kecil */
+        .stat-number { font-size: 2.2rem; font-weight: 700; color: var(--primary-dark); display: block; font-family: 'Playfair Display', serif; line-height: 1; margin-bottom: 5px; }
+        .stat-label { font-size: 0.8rem; color: var(--primary-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- 6. ABOUT SECTION --- */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -318,7 +309,8 @@
             .hero-text h1 { font-size: 2.8rem; }
             .hero-badges, .btn-group { justify-content: center; }
             .hero-image-container { margin-top: 50px; }
-            .stats-bar { grid-template-columns: 1fr 1fr; margin-top: 0; }
+            /* Pada mobile, stats bar tidak perlu margin negatif besar */
+            .stats-bar { grid-template-columns: 1fr 1fr; margin-top: 30px; }
             .contact-wrapper { flex-direction: column; }
             .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--primary-dark); flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
             .nav-links.active { display: flex; }
@@ -372,16 +364,14 @@
                     </div>
                 </div>
 
-                <!-- Kanan: Foto dengan Frame Menyatu -->
+                <!-- Kanan: Foto -->
                 <div class="hero-image-container" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="blob-bg"></div>
                     
-                    <!-- Frame Foto: Blending dengan Background -->
                     <div class="hero-img-frame">
                         <img src="PPC.jpg" alt="Petugas PPC Profesional">
                     </div>
 
-                    <!-- Kartu Melayang -->
                     <div class="detail-card">
                         <div style="background:var(--primary-dark); padding:10px; border-radius:50%; color:var(--accent-gold);">
                             <i class="fa-solid fa-check-double"></i>
@@ -397,7 +387,7 @@
         </div>
     </section>
 
-    <!-- Stats Bar -->
+    <!-- Stats Bar (DIPERBAIKI) -->
     <div class="container" id="stats">
         <div class="stats-bar" data-aos="fade-up">
             <div class="stat-item">
