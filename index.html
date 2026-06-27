@@ -15,32 +15,34 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- 1. VARIABLES & RESET --- */
+        /* --- 1. VARIABLES & RESET (HIGH CONTRAST) --- */
         :root {
-            --primary-dark: #0f2e25;
-            --primary-main: #1B4D3E;
-            --primary-light: #2c6e5a;
-            --accent-gold: #c5a059;
-            --accent-gold-light: #ebdcb2;
-            --text-main: #2c3e50;
-            --text-light: #64748b;
+            --primary-dark: #064e3b;   /* Sangat Gelap untuk Header/Footer */
+            --primary-main: #10b981;   /* Emerald Bright untuk Aksen Hero */
+            --primary-mid: #059669;    /* Tengah */
+            --accent-gold: #fbbf24;    /* Emas Cerah (Amber) agar kontras tinggi */
+            --accent-gold-dark: #d97706;
+            --text-on-dark: #ffffff;
+            --text-on-light: #1f2937;
             --white: #ffffff;
-            --bg-gradient: linear-gradient(120deg, #fdfbf7 0%, #f4f9f7 50%, #e8f0ed 100%);
-            --shadow-soft: 0 20px 40px -15px rgba(27, 77, 62, 0.1);
-            --shadow-strong: 0 25px 50px -12px rgba(0,0,0,0.25);
+            
+            /* Gradasi Hero yang Kontras: Putih -> Hijau Emerald */
+            --hero-gradient: linear-gradient(135deg, #ffffff 0%, #ecfdf5 40%, #064e3b 100%);
+            
+            --shadow-card: 0 20px 40px -10px rgba(6, 78, 59, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--text-main);
-            background: var(--bg-gradient);
+            color: var(--text-on-light);
+            background-color: #f9fafb;
             overflow-x: hidden;
             line-height: 1.7;
         }
 
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-dark); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; transition: all 0.3s ease; }
         ul { list-style: none; }
         img { max-width: 100%; display: block; }
@@ -51,7 +53,7 @@
         
         .section-title { margin-bottom: 70px; position: relative; text-align: center; }
         .section-title span {
-            color: var(--accent-gold);
+            color: var(--primary-mid);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -59,76 +61,73 @@
             display: block;
             margin-bottom: 15px;
         }
-        .section-title h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; }
+        .section-title h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--primary-dark); }
 
         .btn-premium {
             display: inline-block;
             padding: 18px 45px;
-            background: var(--primary-main);
-            color: var(--white);
-            font-weight: 600;
+            background: var(--accent-gold);
+            color: var(--primary-dark); /* Teks gelap di tombol emas agar kontras */
+            font-weight: 700;
             border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(27, 77, 62, 0.2);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4);
             position: relative;
             overflow: hidden;
             z-index: 1;
-            border: 1px solid transparent;
         }
-        .btn-premium::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
-            background: var(--primary-dark); transition: 0.4s ease; z-index: -1;
+        .btn-premium:hover { 
+            transform: translateY(-3px); 
+            background: var(--white);
+            color: var(--primary-dark);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
         }
-        .btn-premium:hover::before { width: 100%; }
-        .btn-premium:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
-        /* --- 3. HEADER --- */
+        /* --- 3. HEADER (SOLID DARK CONTRAST) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 20px 0; transition: 0.4s;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
+            background: var(--primary-dark); /* Solid Dark Green */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(6, 78, 59, 0.98);
             padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
         nav { display: flex; justify-content: space-between; align-items: center; }
         
         .logo { 
-            font-size: 1.6rem; font-weight: 700; color: var(--primary-dark); 
+            font-size: 1.6rem; font-weight: 700; color: var(--white); 
             font-family: 'Playfair Display', serif; letter-spacing: -0.5px;
         }
         .logo span { color: var(--accent-gold); }
         
         .nav-links { display: flex; gap: 35px; align-items: center; }
         .nav-links a { 
-            color: var(--text-main); font-weight: 500; font-size: 0.95rem; 
-            position: relative;
+            color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; 
         }
-        .nav-links a:not(.cta-menu):hover { color: var(--primary-main); }
+        .nav-links a:hover { color: var(--accent-gold); }
         
         .cta-menu {
             padding: 10px 28px;
             background: var(--accent-gold);
-            color: var(--white) !important;
+            color: var(--primary-dark) !important;
             border-radius: 50px;
-            font-weight: 600 !important;
-            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
         }
-        .cta-menu:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .cta-menu:hover { background: var(--white); color: var(--primary-dark) !important; }
         
-        .menu-toggle { display: none; color: var(--primary-dark); font-size: 1.5rem; cursor: pointer; }
-        header.scrolled .menu-toggle { color: var(--primary-dark); }
+        .menu-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
 
-        /* --- 4. HERO SECTION (IMPROVED PHOTO FRAME) --- */
+        /* --- 4. HERO SECTION (HIGH CONTRAST GRADIENT) --- */
         .hero-split {
             min-height: 100vh;
             display: flex; align-items: center;
             position: relative;
             padding-top: 80px;
-            background: radial-gradient(circle at 10% 20%, rgb(249, 252, 251) 0%, rgb(235, 241, 239) 90%);
+            /* Gradasi Kuat: Putih di kiri (untuk teks), Hijau Tua di kanan (untuk foto) */
+            background: var(--hero-gradient);
         }
         
         .hero-wrapper {
@@ -136,113 +135,87 @@
         }
         
         .hero-text h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1.15; margin-bottom: 25px;
-            color: var(--primary-dark);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1; margin-bottom: 25px;
+            color: var(--primary-dark); /* Kontras tinggi di background putih */
         }
         .hero-text h1 span {
-            color: var(--primary-main);
+            color: var(--primary-mid);
             position: relative;
             display: inline-block;
         }
+        /* Highlight Emas di Bawah Teks */
         .hero-text h1 span::after {
-            content: ''; position: absolute; bottom: 8px; left: 0; width: 100%; height: 12px;
-            background: var(--accent-gold-light); z-index: -1; transform: skewX(-10deg);
+            content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 15px;
+            background: var(--accent-gold); opacity: 0.3; z-index: -1; transform: skewX(-10deg);
         }
 
         .hero-text p {
-            font-size: 1.15rem; color: var(--text-light); margin-bottom: 40px; max-width: 95%;
+            font-size: 1.2rem; color: #374151; margin-bottom: 40px; max-width: 90%; font-weight: 500;
         }
 
         .hero-badges { display: flex; gap: 15px; margin-bottom: 35px; flex-wrap: wrap; }
         .badge {
-            background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(27, 77, 62, 0.1);
-            color: var(--primary-main); padding: 10px 20px; border-radius: 8px;
-            font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px;
-            backdrop-filter: blur(5px);
+            background: rgba(6, 78, 59, 0.1); border: 1px solid var(--primary-dark);
+            color: var(--primary-dark); padding: 10px 20px; border-radius: 8px;
+            font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 8px;
         }
 
-        /* --- IMPROVED PHOTO CONTAINER --- */
-        .hero-image-container { 
-            position: relative; 
-            display: flex; 
-            justify-content: center; 
-            perspective: 1000px; /* Untuk efek 3D halus */
-        }
+        /* Hero Image Styling */
+        .hero-image-container { position: relative; display: flex; justify-content: center; }
         
-        /* Blob Background Animasi */
+        /* Blob Background Animasi - Warna Emas/Hijau */
         .blob-bg {
             position: absolute; width: 120%; height: 120%; top: -10%; left: -10%;
-            background: linear-gradient(45deg, var(--primary-light), var(--primary-main));
-            opacity: 0.08; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
+            opacity: 0.15; border-radius: 50%;
             z-index: 0; animation: morph 8s ease-in-out infinite;
         }
 
-        /* Frame Foto Utama - Dibuat Tidak Kotak */
         .hero-img-frame {
             position: relative; z-index: 2; width: 100%; max-width: 450px;
-            /* Border Radius Besar agar tidak kotak */
-            border-radius: 40px; 
-            overflow: hidden;
-            /* Border Putih Tebal agar menyatu dengan background */
-            border: 8px solid var(--white);
-            /* Bayangan Halus */
-            box-shadow: var(--shadow-strong);
+            border-radius: 40px; overflow: hidden;
+            border: 8px solid rgba(255,255,255,0.3); /* Border semi-transparan */
+            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.3); /* Bayangan dalam untuk kontras */
             animation: float 6s ease-in-out infinite;
+            background: var(--white);
         }
 
-        .hero-img-frame img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            /* Sedikit zoom agar tidak ada ruang kosong */
-            transform: scale(1.05); 
-        }
-
-        /* Kartu Detail Melayang - Terintegrasi */
         .detail-card {
-            position: absolute; 
-            bottom: 40px; 
-            left: -30px; 
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 25px; 
-            border-radius: 20px; /* Sudut membulat */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            z-index: 3; 
-            display: flex; align-items: center; gap: 15px;
+            position: absolute; bottom: 40px; left: -30px; background: var(--white);
+            padding: 20px 25px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            z-index: 3; display: flex; align-items: center; gap: 15px;
             animation: float 7s ease-in-out infinite reverse;
-            border-left: 5px solid var(--accent-gold);
-            backdrop-filter: blur(10px);
+            border-left: 6px solid var(--accent-gold);
         }
 
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
-        @keyframes morph { 0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } }
+        @keyframes morph { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
         /* --- 5. STATS BAR --- */
         .stats-bar {
             background: var(--white); padding: 50px 40px; margin-top: -60px;
-            position: relative; z-index: 10; box-shadow: var(--shadow-soft);
+            position: relative; z-index: 10; box-shadow: var(--shadow-card);
             border-radius: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
-            border-bottom: 3px solid var(--accent-gold);
+            border-bottom: 4px solid var(--accent-gold);
         }
         .stat-item { text-align: center; }
-        .stat-number { font-size: 2.8rem; font-weight: 700; color: var(--primary-main); display: block; font-family: 'Playfair Display', serif; }
-        .stat-label { font-size: 0.9rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+        .stat-number { font-size: 2.8rem; font-weight: 700; color: var(--primary-dark); display: block; font-family: 'Playfair Display', serif; }
+        .stat-label { font-size: 0.9rem; color: var(--primary-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
         /* --- 6. ABOUT SECTION --- */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .about-img-wrapper { position: relative; }
-        .about-img-main { width: 100%; border-radius: 30px; box-shadow: var(--shadow-strong); }
+        .about-img-main { width: 100%; border-radius: 30px; box-shadow: var(--shadow-card); }
         .experience-badge {
             position: absolute; bottom: -25px; right: -25px; background: var(--primary-dark);
             color: var(--white); padding: 25px; border-radius: 20px; text-align: center; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 4px solid var(--accent-gold);
         }
         .experience-badge h3 { font-size: 2.2rem; color: var(--accent-gold); margin: 0; line-height: 1; }
         
         .feature-list li { margin-bottom: 20px; display: flex; align-items: start; }
         .feature-list i {
-            background: var(--accent-gold-light); color: var(--accent-gold); width: 35px; height: 35px;
+            background: var(--primary-dark); color: var(--accent-gold); width: 35px; height: 35px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             margin-right: 20px; margin-top: 5px; font-size: 1rem;
         }
@@ -254,29 +227,24 @@
             background: #fdfdfd; padding: 45px 35px; border-radius: 20px;
             transition: 0.4s; border: 1px solid #eee; position: relative; overflow: hidden;
         }
-        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-soft); border-color: transparent; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-card); border-color: var(--accent-gold); }
         .service-icon { 
-            width: 70px; height: 70px; background: var(--bg-gradient); 
+            width: 70px; height: 70px; background: var(--primary-dark); 
             border-radius: 15px; display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--primary-main); margin-bottom: 25px;
+            font-size: 2rem; color: var(--accent-gold); margin-bottom: 25px;
         }
-        .service-link { color: var(--accent-gold); font-weight: 700; display: flex; align-items: center; margin-top: 20px; }
+        .service-link { color: var(--primary-mid); font-weight: 700; display: flex; align-items: center; margin-top: 20px; }
         .service-link i { margin-left: 10px; transition: 0.3s; }
         .service-link:hover i { margin-left: 15px; }
 
-        /* --- 8. SOP SECTION --- */
+        /* --- 8. SOP SECTION (DARK MODE CONTRAST) --- */
         .sop-section {
             background: var(--primary-dark);
             color: var(--white);
             position: relative;
-            overflow: hidden;
-        }
-        .sop-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 30px 30px; opacity: 0.3;
         }
         .sop-section .section-title h2 { color: var(--white); }
+        .sop-section .section-title span { color: var(--accent-gold); }
         
         .timeline-wrapper {
             display: flex; justify-content: space-between; position: relative;
@@ -294,20 +262,20 @@
         }
 
         .step-icon-box {
-            width: 80px; height: 80px; background: var(--primary-main);
+            width: 80px; height: 80px; background: rgba(255,255,255,0.1);
             border: 2px solid var(--accent-gold); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 25px; font-size: 1.8rem; color: var(--accent-gold);
-            transition: 0.4s; box-shadow: 0 0 0 10px rgba(255,255,255,0.05);
+            transition: 0.4s;
         }
 
         .sop-step:hover .step-icon-box {
             background: var(--accent-gold); color: var(--primary-dark);
-            transform: scale(1.1); box-shadow: 0 0 0 15px rgba(197, 160, 89, 0.2);
+            transform: scale(1.1);
         }
 
         .sop-step h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--white); }
-        .sop-step p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .sop-step p { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
         /* --- 9. GALLERY & CONTACT --- */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
@@ -316,7 +284,7 @@
         .gallery-item:hover img { transform: scale(1.1); }
 
         .contact-wrapper {
-            background: var(--white); border-radius: 30px; box-shadow: var(--shadow-strong);
+            background: var(--white); border-radius: 30px; box-shadow: var(--shadow-card);
             overflow: hidden; display: flex;
         }
         .contact-info { background: var(--primary-dark); color: white; padding: 60px; flex: 1; }
@@ -325,7 +293,7 @@
         .form-control:focus { outline: none; border-color: var(--accent-gold); background: #fff; }
 
         /* --- FOOTER --- */
-        footer { background: #081a15; color: rgba(255,255,255,0.5); padding: 60px 0 30px; text-align: center; }
+        footer { background: #022c22; color: rgba(255,255,255,0.6); padding: 60px 0 30px; text-align: center; }
         .footer-logo { font-family: 'Playfair Display'; font-size: 1.8rem; color: white; margin-bottom: 20px; display: block; }
 
         /* --- RESPONSIVE --- */
@@ -336,7 +304,7 @@
             .hero-image-container { margin-top: 50px; }
             .stats-bar { grid-template-columns: 1fr 1fr; margin-top: 0; }
             .contact-wrapper { flex-direction: column; }
-            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--primary-dark); flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .timeline-line { display: none; }
@@ -346,7 +314,7 @@
 </head>
 <body>
 
-    <!-- Header Menu -->
+    <!-- Header Menu (Solid Dark) -->
     <header id="navbar">
         <div class="container">
             <nav>
@@ -364,12 +332,12 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (High Contrast Gradient) -->
     <section id="home" class="hero-split">
         <div class="container">
             <div class="hero-wrapper">
                 
-                <!-- Kiri: Teks -->
+                <!-- Kiri: Teks (Background Putih/Terang) -->
                 <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
                     <div class="hero-badges">
                         <div class="badge"><i class="fa-solid fa-certificate"></i> BNSP Certified</div>
@@ -388,23 +356,21 @@
                     </div>
                 </div>
 
-                <!-- Kanan: Foto Dummy dengan Frame Terintegrasi -->
+                <!-- Kanan: Foto (Background Hijau Tua/Gelap) -->
                 <div class="hero-image-container" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="blob-bg"></div>
                     
-                    <!-- Frame Foto: Rounded & Elegant -->
                     <div class="hero-img-frame">
-                        <img src="PPC.jpg" alt="Petugas PPC Profesional">
+                        <img src="https://images.unsplash.com/photo-1595844948332-6a75d5143d93?q=80&w=600&auto=format&fit=crop" alt="Petugas PPC Profesional">
                     </div>
 
-                    <!-- Kartu Melayang: Menyatu dengan Frame -->
                     <div class="detail-card">
-                        <div style="background:var(--accent-gold-light); padding:10px; border-radius:50%; color:var(--accent-gold);">
+                        <div style="background:var(--primary-dark); padding:10px; border-radius:50%; color:var(--accent-gold);">
                             <i class="fa-solid fa-check-double"></i>
                         </div>
                         <div>
                             <div style="font-weight: 700; color: var(--primary-dark);">Terpercaya</div>
-                            <div style="font-size: 0.8rem; color: #888;">Audit Ready 100%</div>
+                            <div style="font-size: 0.8rem; color: #666;">Audit Ready 100%</div>
                         </div>
                     </div>
                 </div>
@@ -451,7 +417,7 @@
                         <span>Tentang Ahli</span>
                         <h2>Komitmen pada<br>Akuritas & Integritas</h2>
                     </div>
-                    <p style="margin-bottom: 30px; color: var(--text-light);">
+                    <p style="margin-bottom: 30px; color: var(--text-on-light);">
                         Sampling bukan sekadar mengambil barang. Ini adalah fondasi hukum dari kualitas produk agribisnis. Dengan sertifikasi BNSP, saya memastikan setiap langkah pengambilan contoh pupuk dan pestisida bebas dari bias dan kontaminasi.
                     </p>
                     <ul class="feature-list">
