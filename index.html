@@ -81,7 +81,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
         }
 
-        /* --- 3. HEADER (UPDATED LAYOUT) --- */
+        /* --- 3. HEADER (UPDATED LAYOUT - MEPET KIRI & KANAN) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 15px 0; transition: 0.4s;
@@ -97,10 +97,15 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
         
-        /* Menggunakan Flexbox untuk memisahkan Kiri dan Kanan */
+        /* PERBAIKAN: Container Header dibuat lebih lebar padding-nya agar mepet */
+        header .container {
+            max-width: 100%; /* Memenuhi lebar layar */
+            padding: 0 3%;   /* Jarak ke pinggir layar hanya 3% (sekitar 40-50px) */
+        }
+
         nav { 
             display: flex; 
-            justify-content: space-between; /* Logo di kiri, Menu di kanan */
+            justify-content: space-between; /* Logo mentok kiri, Menu mentok kanan */
             align-items: center; 
             width: 100%; 
         }
@@ -110,7 +115,7 @@
             display: flex;
             flex-direction: column;
             line-height: 1.2;
-            text-align: left; /* Rata kiri */
+            text-align: left;
         }
         .logo-main { 
             font-size: 1.6rem; font-weight: 700; color: var(--white); 
@@ -128,7 +133,7 @@
         }
         
         /* Menu Navigasi */
-        .nav-links { display: flex; gap: 35px; align-items: center; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; }
         .nav-links a:hover { color: var(--accent-gold); }
         
