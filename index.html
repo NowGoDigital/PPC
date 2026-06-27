@@ -81,7 +81,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2); 
         }
 
-        /* --- 3. HEADER (UPDATED LOGO STYLE) --- */
+        /* --- 3. HEADER (UPDATED LAYOUT) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 15px 0; transition: 0.4s;
@@ -96,13 +96,21 @@
             padding: 10px 0;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
-        nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         
-        /* Logo Styling Baru */
+        /* Menggunakan Flexbox untuk memisahkan Kiri dan Kanan */
+        nav { 
+            display: flex; 
+            justify-content: space-between; /* Logo di kiri, Menu di kanan */
+            align-items: center; 
+            width: 100%; 
+        }
+        
+        /* Logo Styling */
         .logo-container {
             display: flex;
             flex-direction: column;
             line-height: 1.2;
+            text-align: left; /* Rata kiri */
         }
         .logo-main { 
             font-size: 1.6rem; font-weight: 700; color: var(--white); 
@@ -119,6 +127,7 @@
             margin-top: 2px;
         }
         
+        /* Menu Navigasi */
         .nav-links { display: flex; gap: 35px; align-items: center; }
         .nav-links a { color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.95rem; }
         .nav-links a:hover { color: var(--accent-gold); }
@@ -445,12 +454,13 @@
     <header id="navbar">
         <div class="container">
             <nav>
-                <!-- BAGIAN LOGO YANG DIUBAH -->
+                <!-- BAGIAN LOGO (RATA KIRI) -->
                 <a href="#" class="logo-container">
                     <div class="logo-main">PPC <span>Certified</span></div>
                     <div class="logo-desc">Jasa Sampling Pupuk & Pestisida Profesional</div>
                 </a>
                 
+                <!-- BAGIAN MENU (RATA KANAN) -->
                 <ul class="nav-links">
                     <li><a href="#home">Beranda</a></li>
                     <li><a href="#about">Profil</a></li>
@@ -775,7 +785,7 @@
                 <div class="footer-col">
                     <h4>Hubungi Kami</h4>
                     <ul class="footer-contact">
-                        <li><i class="fa-solid fa-location-dot"></i><span>Jl. Agribisnis No. 88, Mataram,<br>Lombok - NTB</span></li>
+                        <li><i class="fa-solid fa-location-dot"></i><span>Jl. Agribisnis No. 88, Bogor,<br>Jawa Barat, Indonesia</span></li>
                         <li><i class="fa-solid fa-phone"></i><span>+62 812-3456-7890</span></li>
                         <li><i class="fa-solid fa-envelope"></i><span>info@agrisample.id</span></li>
                     </ul>
@@ -828,7 +838,7 @@
             const hp = document.getElementById('hp').value;
 
             // Nomor WhatsApp Tujuan (Ganti dengan nomor Anda, format 62...)
-            const nomorWA = "628175761165"; 
+            const nomorWA = "6281234567890"; 
 
             // Buat Narasi Pesan
             const pesan = `Halo Admin PPC Certified, saya ingin konsultasi terkait jasa sampling.%0A%0A` +
