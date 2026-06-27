@@ -471,6 +471,33 @@
             .footer-grid { grid-template-columns: 1fr; }
             .stats-bar { grid-template-columns: 1fr; }
         }
+    
+            /* Style Khusus Tombol Login Admin di Navbar */
+        .admin-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .admin-login-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Pastikan posisi icon rapi */
+        .admin-login-btn i {
+            margin: 0; /* Reset margin jika ada */
+        }
+    
+    
     </style>
 </head>
 <body>
@@ -492,6 +519,14 @@
                 <li><a href="#services">Layanan</a></li>
                 <li><a href="#sop">SOP Kerja</a></li>
                 <li><a href="#gallery">Galeri</a></li>
+    
+            <!-- Tombol Login Admin Baru -->
+                <li>
+                    <a href="admin.html" target="_blank" class="admin-login-btn" title="Login Admin">
+                <i class="fa-solid fa-lock"></i>
+                    </a>
+                </li>
+    
                 <li><a href="#contact" class="cta-menu">Hubungi Saya</a></li>
             </ul>
             <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
