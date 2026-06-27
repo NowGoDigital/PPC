@@ -422,6 +422,85 @@
             .footer-grid { grid-template-columns: 1fr; }
             .stats-bar { grid-template-columns: 1fr; }
         }
+    
+
+            /* --- 12. MOBILE APP EXPERIENCE (Responsive Only) --- */
+        @media (max-width: 992px) {
+            /* Reset Header for Mobile App Feel */
+            header {
+                background: rgba(6, 78, 59, 0.95);
+                backdrop-filter: blur(10px);
+                height: 60px;
+                padding: 0 20px;
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .logo { font-size: 1.3rem; }
+            .menu-toggle { font-size: 1.4rem; }
+
+            /* Sidebar Drawer (Menu Geser) */
+            .nav-links {
+                position: fixed; top: 0; left: -100%; width: 80%; height: 100vh;
+                background: var(--primary-dark); flex-direction: column;
+                justify-content: center; gap: 30px; z-index: 2000;
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+                padding-left: 40px;
+            }
+            .nav-links.active { left: 0; }
+            .nav-links a { font-size: 1.2rem; color: var(--white); opacity: 0.8; }
+            .nav-links a:hover { opacity: 1; color: var(--accent-gold); }
+
+            /* Backdrop Overlay */
+            .app-overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+                z-index: 1999; opacity: 0; visibility: hidden; transition: 0.3s;
+            }
+            .app-overlay.active { opacity: 1; visibility: visible; }
+
+            /* Bottom Navigation Bar */
+            .bottom-nav {
+                position: fixed; bottom: 0; left: 0; width: 100%;
+                background: var(--white); height: 70px;
+                display: flex; justify-content: space-around; align-items: center;
+                box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+                z-index: 1500; border-top: 1px solid #eee;
+                padding-bottom: env(safe-area-inset-bottom); /* Support iPhone X+ */
+            }
+            
+            .nav-item {
+                display: flex; flex-direction: column; align-items: center;
+                text-decoration: none; color: #9ca3af; font-size: 0.75rem;
+                transition: 0.3s; width: 20%;
+            }
+            
+            .nav-item i { font-size: 1.4rem; margin-bottom: 5px; transition: 0.3s; }
+            .nav-item.active { color: var(--primary-mid); font-weight: 600; }
+            .nav-item.active i { transform: translateY(-5px); color: var(--primary-dark); }
+            .nav-item:active i { transform: scale(0.9); }
+
+            /* Smooth Section Transitions */
+            section {
+                scroll-margin-top: 60px; /* Offset for fixed header */
+                opacity: 1; transition: opacity 0.5s ease;
+            }
+            
+            /* Hide Desktop CTA in Header on Mobile to save space */
+            .cta-menu { display: none !important; }
+        }
+
+        /* Hide Bottom Nav on Desktop */
+        @media (min-width: 993px) {
+            .bottom-nav, .app-overlay { display: none !important; }
+        }
+        
+    
+    
+    
+    
     </style>
 </head>
 <body>
@@ -810,6 +889,101 @@
             // Buka WhatsApp
             window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
         }
+    
+    
+            // --- LOGIKA MOBILE APP ---
+        
+        // 1. Toggle Sidebar Drawer
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const appOverlay = document.getElementById('appOverlay');
+
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            appOverlay.classList.toggle('active');
+            
+            // Ganti ikon hamburger jadi X
+            const icon = menuToggle.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        appOverlay.addEventListener('click', toggleMenu); // Tutup jika klik area gelap
+
+        // 2. Active State Bottom Navigation
+        function setActiveNav(element) {
+            // Hapus kelas active dari semua item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            // Tambahkan ke yang diklik
+            element.classList.add('active');
+            
+            // Tutup drawer jika terbuka
+            if(navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        }
+
+        // 3. Scroll Spy (Otomatis update menu bawah saat discroll)
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-item').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    
+    
+    
     </script>
+
+        <!-- App Overlay (Layar Gelap saat Drawer Terbuka) -->
+    <div class="app-overlay" id="appOverlay"></div>
+
+    <!-- Bottom Navigation Bar (Mobile Only) -->
+    <nav class="bottom-nav">
+        <a href="#home" class="nav-item active" onclick="setActiveNav(this)">
+            <i class="fa-solid fa-house"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="#about" class="nav-item" onclick="setActiveNav(this)">
+            <i class="fa-solid fa-user-tie"></i>
+            <span>Profil</span>
+        </a>
+        <a href="#services" class="nav-item" onclick="setActiveNav(this)">
+            <i class="fa-solid fa-flask"></i>
+            <span>Layanan</span>
+        </a>
+        <a href="#gallery" class="nav-item" onclick="setActiveNav(this)">
+            <i class="fa-solid fa-images"></i>
+            <span>Galeri</span>
+        </a>
+        <a href="#contact" class="nav-item" onclick="setActiveNav(this)">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Kontak</span>
+        </a>
+    </nav>
+
+
+    
 </body>
 </html>
