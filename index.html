@@ -25,7 +25,6 @@
             --shadow-soft: 0 20px 40px -10px rgba(6, 78, 59, 0.15);
         }
 
-        /* KUNCI UTAMA: Scrollbar fix untuk semua device */
         html {
             overflow-x: hidden;
             width: 100%;
@@ -39,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* Wrapper untuk mencegah overflow horizontal */
         .page-wrapper {
             width: 100%;
             max-width: 100vw;
@@ -78,7 +76,6 @@
         }
         .section-padding { padding: 100px 0; }
         
-        /* Setiap section harus overflow hidden untuk mencegah scrollbar */
         section {
             width: 100%;
             overflow: hidden;
@@ -154,7 +151,6 @@
             height: 70px;
         }
         
-        /* Logo Styling */
         .logo-container {
             display: flex;
             flex-direction: column;
@@ -186,7 +182,6 @@
             text-overflow: ellipsis;
         }
         
-        /* Menu Navigasi */
         .nav-links { 
             display: flex; 
             gap: 30px; 
@@ -208,7 +203,6 @@
             font-weight: 700 !important;
         }
 
-        /* Tombol Login Admin */
         .admin-login-btn {
             display: flex;
             align-items: center;
@@ -229,7 +223,6 @@
             border-color: var(--accent-gold);
         }
         
-        /* Hamburger Toggle */
         .menu-toggle { 
             display: none; 
             color: var(--white); 
@@ -321,7 +314,6 @@
             max-width: 100%;
         }
 
-        /* --- PHOTO CONTAINER --- */
         .hero-image-container { 
             position: relative; 
             display: flex; 
@@ -595,12 +587,97 @@
             line-height: 1.6; 
         }
 
-        /* --- 9. GALLERY MODERN --- */
+        /* ================================================ */
+        /* === 9. GALLERY - FILTER BAR + GRID + SCROLL ==== */
+        /* ================================================ */
+        
+        /* ===== FILTER BAR ===== */
+        .gallery-filter-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+        
+        .filter-btn {
+            padding: 10px 24px;
+            border: 2px solid var(--primary-dark);
+            background: transparent;
+            color: var(--primary-dark);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(6, 78, 59, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-dark);
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(6, 78, 59, 0.25);
+        }
+        
+        .filter-btn.active i {
+            color: var(--accent-gold);
+        }
+        
+        .filter-select {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-dark);
+            border-radius: 50px;
+            background: var(--white);
+            color: var(--primary-dark);
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+            min-width: 140px;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
+        }
+        
+        .filter-select.active {
+            background: var(--primary-dark);
+            color: var(--white);
+            border-color: var(--primary-dark);
+        }
+        
+        .filter-info {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .filter-info strong {
+            color: var(--primary-dark);
+        }
+        
+        /* Grid 4 kolom di desktop */
         .gallery-grid-modern {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 0;
             width: 100%;
         }
 
@@ -613,19 +690,53 @@
             height: 400px;
             cursor: pointer;
             max-width: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+            animation: fadeInCard 0.5s ease;
+        }
+        
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Container gambar dengan scrollbar vertikal */
         .gallery-img-box {
             width: 100%;
             height: 100%;
             position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .gallery-img-box img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            min-height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Custom scrollbar vertikal */
+        .gallery-img-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .gallery-img-box::-webkit-scrollbar-track {
+            background: rgba(6, 78, 59, 0.08);
+            border-radius: 4px;
+        }
+        .gallery-img-box::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-mid) 0%, var(--primary-dark) 100%);
+            border-radius: 4px;
+        }
+        .gallery-img-box::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent-gold) 0%, var(--primary-mid) 100%);
+        }
+        
+        .gallery-img-box {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-mid) rgba(6, 78, 59, 0.08);
         }
 
         .gallery-overlay {
@@ -634,14 +745,16 @@
             left: 0; 
             width: 100%; 
             height: 100%;
-            background: linear-gradient(to top, rgba(6, 78, 59, 0.95) 0%, rgba(6, 78, 59, 0.7) 60%, transparent 100%);
+            background: linear-gradient(to top, rgba(6, 78, 59, 0.95) 0%, rgba(6, 78, 59, 0.7) 50%, transparent 100%);
             opacity: 0;
             visibility: hidden;
             transition: all 0.4s ease;
             display: flex;
             align-items: flex-end;
-            padding: 30px;
+            padding: 25px;
             box-sizing: border-box;
+            z-index: 5;
+            pointer-events: none;
         }
 
         .overlay-content {
@@ -650,48 +763,152 @@
             color: var(--white);
             width: 100%;
             word-wrap: break-word;
+            pointer-events: auto;
         }
 
-        .gallery-card:hover .gallery-img-box img { transform: scale(1.1); }
+        .gallery-card:hover .gallery-img-box img { transform: scale(1.05); }
         .gallery-card:hover .gallery-overlay { opacity: 1; visibility: visible; }
         .gallery-card:hover .overlay-content { transform: translateY(0); }
 
         .gallery-tag {
             background: var(--accent-gold);
             color: var(--primary-dark);
-            padding: 5px 12px;
+            padding: 4px 12px;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .gallery-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.15);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+            backdrop-filter: blur(5px);
         }
 
         .overlay-content h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             margin-bottom: 5px;
             line-height: 1.2;
         }
 
         .overlay-content p {
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
             opacity: 0.9;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             word-wrap: break-word;
         }
 
         .desc-small {
-            font-size: 0.85rem !important;
-            margin-top: 10px;
+            font-size: 0.78rem !important;
+            margin-top: 8px;
             line-height: 1.5;
             opacity: 0.8 !important;
             border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 10px;
+            padding-top: 8px;
+        }
+        
+        /* Indikator scroll */
+        .scroll-indicator {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(6, 78, 59, 0.85);
+            color: var(--white);
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 4;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .scroll-indicator i {
+            animation: bounceDown 1.5s infinite;
+        }
+        .gallery-card:hover .scroll-indicator {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes bounceDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(3px); }
+        }
+        
+        /* Tombol Load More */
+        .load-more-wrapper {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .btn-load-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-dark);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .btn-load-more:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(6, 78, 59, 0.25);
+        }
+        .btn-load-more:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .gallery-counter {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Pesan kosong */
+        .gallery-empty {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+            color: #666;
+        }
+        .gallery-empty i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        .gallery-empty h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
         }
 
         /* --- 10. CONTACT SECTION --- */
@@ -848,7 +1065,6 @@
         /* ========== RESPONSIVE - TABLET (max 992px) == */
         /* ============================================ */
         @media (max-width: 992px) {
-            /* --- NAVBAR TABLET --- */
             nav { 
                 padding: 15px 20px; 
                 height: 70px; 
@@ -920,7 +1136,6 @@
                 display: flex; 
             }
 
-            /* --- HERO --- */
             .hero-wrapper { 
                 grid-template-columns: 1fr; 
                 text-align: center; 
@@ -933,14 +1148,12 @@
             .hero-image-container { margin-top: 30px; }
             .hero-img-frame { max-width: 350px; margin: 0 auto; }
             
-            /* --- STATS --- */
             .stats-bar { 
                 grid-template-columns: 1fr 1fr; 
                 margin-top: 30px; 
                 padding: 20px;
             }
             
-            /* --- ABOUT --- */
             .about-grid { 
                 grid-template-columns: 1fr; 
                 gap: 40px; 
@@ -948,15 +1161,12 @@
             .about-content { text-align: left; }
             .about-content .section-title { text-align: left !important; }
             
-            /* --- SERVICES --- */
             .service-grid { grid-template-columns: 1fr; }
             
-            /* --- CONTACT --- */
             .contact-wrapper { flex-direction: column; }
             .contact-info { padding: 40px 30px; }
             .contact-form { padding: 40px 30px; }
             
-            /* --- SOP --- */
             .timeline-line { display: none; }
             .timeline-wrapper { 
                 flex-direction: column; 
@@ -969,7 +1179,6 @@
                 max-width: 350px; 
             }
             
-            /* --- DETAIL CARD TABLET --- */
             .detail-card { 
                 left: 50%; 
                 transform: translateX(-50%); 
@@ -978,17 +1187,15 @@
                 max-width: 300px;
             }
             
-            /* --- FOOTER --- */
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
-            
-            /* --- GALLERY --- */
+            /* GALERI TABLET: 2 kolom */
             .gallery-grid-modern { 
-                grid-template-columns: 1fr; 
+                grid-template-columns: repeat(2, 1fr) !important; 
                 gap: 20px;
             }
-            .gallery-card { height: 320px; }
+            .gallery-card { height: 350px; }
             
-            /* --- SECTION --- */
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+            
             .section-padding { padding: 60px 0; }
             .section-title { margin-bottom: 40px; }
             .section-title h2 { font-size: 1.8rem; }
@@ -1005,7 +1212,6 @@
                 box-sizing: border-box;
             }
 
-            /* --- NAVBAR HP FIX --- */
             nav { 
                 padding: 10px 15px; 
                 height: 65px; 
@@ -1058,7 +1264,6 @@
                 font-size: 0.95rem !important;
             }
             
-            /* --- HERO HP --- */
             .hero-split { 
                 padding-top: 90px; 
                 padding-bottom: 60px;
@@ -1094,7 +1299,6 @@
                 margin: 0 auto;
             }
             
-            /* --- DETAIL CARD HP --- */
             .detail-card { 
                 position: relative !important;
                 left: auto !important;
@@ -1111,7 +1315,6 @@
                 animation: none !important;
             }
             
-            /* --- STATS HP --- */
             .stats-bar { 
                 grid-template-columns: 1fr 1fr; 
                 margin-top: -40px;
@@ -1124,7 +1327,6 @@
             .stat-number { font-size: 1.5rem; }
             .stat-label { font-size: 0.7rem; letter-spacing: 0.5px; }
             
-            /* --- ABOUT HP --- */
             .about-img-wrapper {
                 padding: 0 10px;
             }
@@ -1144,7 +1346,6 @@
                 margin-right: 12px;
             }
             
-            /* --- SERVICES HP --- */
             .service-card { 
                 padding: 30px 20px; 
                 border-radius: 15px;
@@ -1158,7 +1359,6 @@
             }
             .service-card h3 { font-size: 1.2rem; }
             
-            /* --- SOP HP --- */
             .sop-section { 
                 padding: 60px 0;
                 width: 100%;
@@ -1181,15 +1381,35 @@
             .sop-step h4 { font-size: 1.1rem; }
             .sop-step p { font-size: 0.85rem; padding: 0 10px; }
             
-            /* --- GALLERY HP --- */
+            /* ===== FILTER BAR HP ===== */
+            .gallery-filter-bar {
+                gap: 8px;
+                margin-bottom: 25px;
+                padding: 0;
+            }
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+                gap: 5px;
+            }
+            .filter-select {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+                min-width: 120px;
+            }
+            .filter-info {
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+            
+            /* GALERI HP: 1 kolom */
             .gallery-grid-modern { 
                 grid-template-columns: 1fr !important; 
                 gap: 15px;
-                margin-top: 30px;
                 width: 100%;
             }
             .gallery-card { 
-                height: 280px; 
+                height: 320px; 
                 border-radius: 15px;
                 width: 100%;
                 max-width: 100%;
@@ -1203,8 +1423,20 @@
                 font-size: 0.7rem;
                 margin-bottom: 8px;
             }
+            .gallery-date {
+                font-size: 0.65rem;
+                padding: 2px 8px;
+                margin-left: 5px;
+            }
             
-            /* --- CONTACT HP --- */
+            .btn-load-more {
+                padding: 14px 30px;
+                font-size: 0.9rem;
+            }
+            .load-more-wrapper {
+                margin-top: 35px;
+            }
+            
             .contact-wrapper { border-radius: 20px; }
             .contact-info { 
                 padding: 30px 20px; 
@@ -1220,7 +1452,6 @@
             }
             .form-label { font-size: 0.85rem; }
             
-            /* Fix grid 2 kolom di form HP */
             .contact-form form > div[style*="grid-template-columns"] {
                 display: block !important;
                 grid-template-columns: 1fr !important;
@@ -1229,7 +1460,6 @@
                 margin-bottom: 20px;
             }
             
-            /* --- FOOTER HP --- */
             footer {
                 padding: 50px 0 20px;
                 width: 100%;
@@ -1253,7 +1483,6 @@
             .social-icons { margin-top: 15px; }
             .copyright { font-size: 0.8rem; }
             
-            /* --- SECTION HP --- */
             .section-title span { 
                 font-size: 0.75rem; 
                 letter-spacing: 2px;
@@ -1264,18 +1493,6 @@
             }
             .section-padding { padding: 50px 0; }
             .section-title { margin-bottom: 30px; }
-            
-            /* --- FIX UNTUK SCROLLBAR HP --- */
-            .stats-bar, 
-            .contact-wrapper,
-            .service-card,
-            .gallery-card,
-            .footer-grid,
-            .timeline-wrapper {
-                width: 100% !important;
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-            }
         }
         
         /* ============================================ */
@@ -1286,7 +1503,6 @@
                 padding: 0 12px;
             }
             
-            /* --- NAVBAR HP KECIL --- */
             nav { 
                 padding: 8px 12px; 
                 height: 60px; 
@@ -1318,7 +1534,6 @@
                 font-size: 1.1rem;
             }
 
-            /* --- HERO HP KECIL --- */
             .hero-text h1 { font-size: 1.6rem; }
             .hero-text p { font-size: 0.85rem; }
             .badge { 
@@ -1332,7 +1547,6 @@
             }
             .hero-img-frame { max-width: 220px; }
 
-            /* --- STATS HP KECIL --- */
             .stats-bar { 
                 grid-template-columns: 1fr; 
                 gap: 10px;
@@ -1348,19 +1562,25 @@
                 margin-bottom: 0;
             }
 
-            /* --- GALLERY HP KECIL --- */
-            .gallery-card { height: 250px; }
+            /* Filter bar HP kecil: full width */
+            .gallery-filter-bar {
+                flex-direction: column;
+                width: 100%;
+            }
+            .filter-btn,
+            .filter-select {
+                width: 100%;
+                justify-content: center;
+            }
             
-            /* --- SECTION HP KECIL --- */
+            .gallery-card { height: 280px; }
+            
             .section-title h2 { font-size: 1.3rem; }
 
-            /* --- CONTACT HP KECIL --- */
             .contact-info { padding: 25px 15px; }
             .contact-form { padding: 25px 15px; }
         }
         
-        /* ====== FIX GLOBAL SCROLLBAR ====== */
-        /* Sembunyikan scrollbar tapi tetap bisa scroll */
         body::-webkit-scrollbar {
             width: 0;
             display: none;
@@ -1374,19 +1594,16 @@
 </head>
 <body>
 
-    <!-- WRAPPER UTAMA UNTUK MENCEGAH OVERFLOW -->
     <div class="page-wrapper">
 
     <!-- Header Menu -->
     <header id="navbar">
         <nav>
-            <!-- LOGO (RATA KIRI) -->
             <a href="#" class="logo-container">
                 <div class="logo-main">PPC <span>Certified</span></div>
                 <div class="logo-desc">Jasa Sampling Sarana Produk Pertanian</div>
             </a>
             
-            <!-- MENU (RATA KANAN) -->
             <ul class="nav-links">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#about">Profil</a></li>
@@ -1401,7 +1618,6 @@
                 <li><a href="#contact" class="cta-menu">Hubungi Saya</a></li>
             </ul>
 
-            <!-- HAMBURGER TOGGLE -->
             <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         </nav>
     </header>
@@ -1480,19 +1696,19 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon"><i class="fa-solid fa-flask"></i></div>
                     <h3>Sampling Pupuk</h3>
-                    <p>Pupuk Urea, NPK, Organik, dan Hayati. Sampling di gudang, pelabuhan, atau pabrik sesuai SNI.</p>
+                    <p>Pupuk Organik, Pupuk Anorganik dan Pupuk Hayati dengan Lokasi Sampling di Gudang di Gudang Pabrik, Gudang Pelabuhan, Gudang Transit dan Titik Distribusi sesuai SNI 19-0429-1989 dan SNI 19-0428-1998.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
                     <h3>Sampling Pestisida</h3>
-                    <p>Verifikasi fisik, kemasan, dan pengambilan contoh cair/padat untuk uji residu dan legalitas.</p>
+                    <p>Herbisida, Insectisida, Fungisida dengan Lokasi Sampling di Gudang di Gudang Pabrik, Gudang Pelabuhan, Gudang Transit dan Titik Distribusi sesuai SNI 19-0429-1989 dan SNI 19-0428-1998.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon"><i class="fa-solid fa-file-signature"></i></div>
-                    <h3>Dokumentasi & BAS</h3>
-                    <p>Penyusunan Berita Acara Sampling (BAS) yang valid secara hukum untuk keperluan regulator.</p>
+                    <h3>Dokumentasi Open Camera (DOC) & Dokumen Sampling (BAPC)</h3>
+                    <p>DOC untuk otentikasi fhoto sesuai GPS dan waktu pelaksanaan sampling dan Dokumentasi Sampling merupakan Berita Acara Pengambilan Contoh yang diketahui dan disetujui oleh PPC bersama Pemilik sample serta para saksi petugas terkait di Lokasi sampling untuk keperluan Regulator.</p>
                     <a href="#contact" class="service-link">Detail Layanan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1507,11 +1723,11 @@
                 <div class="timeline-line"></div>
                 <div class="sop-step" data-aos="zoom-in">
                     <div class="step-icon-box"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h4>1. Perencanaan</h4><p>Menentukan jumlah lot, kode produksi, dan metode acak sampling.</p>
+                    <h4>1. Perencanaan</h4><p>Penetapan Produk, Sampling Plan, Metode Sampling, Penyiapan Sarana Sampling.</p>
                 </div>
                 <div class="sop-step" data-aos="zoom-in" data-aos-delay="150">
                     <div class="step-icon-box"><i class="fa-solid fa-person-digging"></i></div>
-                    <h4>2. Eksekusi</h4><p>Pengambilan contoh di lokasi dengan APD lengkap & alat steril.</p>
+                    <h4>2. Eksekusi</h4><p>Verifikasi Produk dan Quota, Penerapan Metode Sampling, Menetapkan Unit Sample.</p>
                 </div>
                 <div class="sop-step" data-aos="zoom-in" data-aos-delay="300">
                     <div class="step-icon-box"><i class="fa-solid fa-lock"></i></div>
@@ -1536,8 +1752,35 @@
                 </p>
             </div>
             
+            <!-- ===== FILTER BAR ===== -->
+            <div class="gallery-filter-bar" data-aos="fade-up">
+                <button class="filter-btn active" id="btnNewest" onclick="applyFilter('newest')">
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    <span>Terbaru</span>
+                </button>
+                <button class="filter-btn" id="btnOldest" onclick="applyFilter('oldest')">
+                    <i class="fa-solid fa-arrow-up-wide-short"></i>
+                    <span>Terlama</span>
+                </button>
+                <select class="filter-select" id="yearFilter" onchange="applyYearFilter(this.value)">
+                    <option value="all">Semua Tahun</option>
+                </select>
+            </div>
+            
+            <!-- Info filter aktif -->
+            <div class="filter-info" id="filterInfo" style="display: none;"></div>
+            
             <div class="gallery-grid-modern" id="galleryGrid">
                 <!-- Items will be loaded dynamically -->
+            </div>
+            
+            <!-- Tombol Load More & Counter -->
+            <div class="load-more-wrapper" id="loadMoreWrapper" style="display: none;">
+                <button class="btn-load-more" id="loadMoreBtn" onclick="loadMoreGallery()">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    <span>Tampilkan Lebih Banyak</span>
+                </button>
+                <span class="gallery-counter" id="galleryCounter"></span>
             </div>
         </div>
     </section>
@@ -1645,14 +1888,12 @@
     <script>
         AOS.init({ duration: 1000, once: true });
         
-        // Navbar Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
 
-        // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         
@@ -1670,7 +1911,6 @@
             });
         }
 
-        // Close mobile menu when link clicked
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -1680,7 +1920,6 @@
             });
         });
 
-        // FUNGSI KIRIM KE WHATSAPP
         function kirimKeWhatsApp(e) {
             e.preventDefault();
 
@@ -1706,83 +1945,347 @@
     </script>
 
     <script>
-        // LOAD GALLERY DATA FROM LOCALSTORAGE
-        function loadGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            const stored = localStorage.getItem('galleryData');
-            
-            if (stored) {
-                const galleryData = JSON.parse(stored);
-                
-                if (galleryData.length === 0) {
-                    galleryGrid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1; padding: 40px;">Belum ada item galeri.</p>';
-                    return;
+        // ============================================
+        // GALLERY SYSTEM + FILTER + LOAD MORE
+        // ============================================
+        
+        let galleryDataGlobal = [];     // Data asli dari localStorage
+        let filteredData = [];          // Data setelah filter/sort
+        let currentDisplayCount = 8;    // Default tampilkan 8 item
+        const ITEMS_PER_LOAD = 4;       // Setiap klik load more, tambah 4
+        let currentFilter = 'newest';   // 'newest' atau 'oldest'
+        let currentYear = 'all';        // 'all' atau tahun spesifik
+        
+        // Format tanggal ke format Indonesia
+        function formatTanggal(dateStr) {
+            if (!dateStr) return '';
+            const bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
+            return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+        }
+        
+        // Dapatkan tahun unik dari data
+        function getUniqueYears(data) {
+            const years = new Set();
+            data.forEach(item => {
+                if (item.date) {
+                    const year = new Date(item.date).getFullYear();
+                    if (!isNaN(year)) years.add(year.toString());
                 }
-
-                galleryGrid.innerHTML = galleryData.map((item, index) => `
-                    <div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
-                        <div class="gallery-img-box">
-                            <img src="${item.image}" alt="${item.title}">
-                            <div class="gallery-overlay">
-                                <div class="overlay-content">
-                                    <span class="gallery-tag">${item.tag}</span>
-                                    <h3>${item.title}</h3>
-                                    <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
-                                    <p class="desc-small">${item.description}</p>
-                                </div>
+            });
+            return Array.from(years).sort((a, b) => b - a); // Descending
+        }
+        
+        // Sort & filter data
+        function sortAndFilterData(data, filter, year) {
+            let result = [...data];
+            
+            // Filter berdasarkan tahun
+            if (year !== 'all') {
+                result = result.filter(item => {
+                    if (!item.date) return false;
+                    const itemYear = new Date(item.date).getFullYear().toString();
+                    return itemYear === year;
+                });
+            }
+            
+            // Sort berdasarkan tanggal
+            result.sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : 0;
+                const dateB = b.date ? new Date(b.date).getTime() : 0;
+                
+                if (filter === 'newest') {
+                    return dateB - dateA; // Terbaru dulu
+                } else {
+                    return dateA - dateB; // Terlama dulu
+                }
+            });
+            
+            return result;
+        }
+        
+        // Render satu card galeri
+        function renderGalleryCard(item, index) {
+            const tanggalFormatted = formatTanggal(item.date);
+            const dateBadge = tanggalFormatted 
+                ? `<span class="gallery-date"><i class="fa-regular fa-calendar"></i> ${tanggalFormatted}</span>` 
+                : '';
+            
+            return `
+                <div class="gallery-card" data-aos="fade-up" data-aos-delay="${(index % 4) * 80}">
+                    <div class="gallery-img-box">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="scroll-indicator">
+                            <i class="fa-solid fa-angles-up-down"></i>
+                            <span>Geser</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <span class="gallery-tag">${item.tag}</span>
+                                ${dateBadge}
+                                <h3>${item.title}</h3>
+                                <p><i class="fa-solid fa-location-dot"></i> ${item.location}</p>
+                                <p class="desc-small">${item.description}</p>
                             </div>
                         </div>
                     </div>
-                `).join('');
+                </div>
+            `;
+        }
+        
+        // Populate dropdown tahun
+        function populateYearFilter() {
+            const yearSelect = document.getElementById('yearFilter');
+            const years = getUniqueYears(galleryDataGlobal);
+            
+            // Reset
+            yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
+            
+            // Tambahkan option untuk setiap tahun
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
+            
+            // Set value sesuai filter aktif
+            yearSelect.value = currentYear;
+        }
+        
+        // Update info filter yang aktif
+        function updateFilterInfo() {
+            const infoEl = document.getElementById('filterInfo');
+            const totalFiltered = filteredData.length;
+            const totalAll = galleryDataGlobal.length;
+            
+            if (currentYear !== 'all' || currentFilter !== 'newest') {
+                let infoText = `Menampilkan <strong>${totalFiltered}</strong> dari ${totalAll} foto`;
+                
+                if (currentYear !== 'all') {
+                    infoText += ` pada tahun <strong>${currentYear}</strong>`;
+                }
+                
+                if (currentFilter === 'oldest') {
+                    infoText += ' (diurutkan dari <strong>terlama</strong>)';
+                } else {
+                    infoText += ' (diurutkan dari <strong>terbaru</strong>)';
+                }
+                
+                infoEl.innerHTML = infoText;
+                infoEl.style.display = 'block';
             } else {
-                const defaultData = [
+                infoEl.style.display = 'none';
+            }
+        }
+        
+        // Render galeri
+        function renderGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const loadMoreWrapper = document.getElementById('loadMoreWrapper');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const galleryCounter = document.getElementById('galleryCounter');
+            
+            // Reset display count saat filter berubah
+            currentDisplayCount = Math.min(8, filteredData.length);
+            
+            if (filteredData.length === 0) {
+                galleryGrid.innerHTML = `
+                    <div class="gallery-empty">
+                        <i class="fa-regular fa-image"></i>
+                        <h3>Tidak Ada Foto</h3>
+                        <p>Tidak ada foto yang sesuai dengan filter "${currentYear === 'all' ? 'Semua Tahun' : 'Tahun ' + currentYear}". Silakan coba filter lain.</p>
+                    </div>
+                `;
+                loadMoreWrapper.style.display = 'none';
+                updateFilterInfo();
+                return;
+            }
+            
+            // Render item sesuai jumlah yang ditampilkan
+            const displayData = filteredData.slice(0, currentDisplayCount);
+            galleryGrid.innerHTML = displayData.map((item, index) => renderGalleryCard(item, index)).join('');
+            
+            // Update tombol load more & counter
+            if (filteredData.length > 8) {
+                loadMoreWrapper.style.display = 'block';
+                
+                if (currentDisplayCount >= filteredData.length) {
+                    loadMoreBtn.disabled = true;
+                    loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+                } else {
+                    loadMoreBtn.disabled = false;
+                    const remaining = filteredData.length - currentDisplayCount;
+                    loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+                }
+                
+                galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
+            } else {
+                loadMoreWrapper.style.display = 'none';
+            }
+            
+            updateFilterInfo();
+            
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+        
+        // Apply filter (Terbaru/Terlama)
+        function applyFilter(filter) {
+            currentFilter = filter;
+            
+            // Update tombol aktif
+            document.getElementById('btnNewest').classList.toggle('active', filter === 'newest');
+            document.getElementById('btnOldest').classList.toggle('active', filter === 'oldest');
+            
+            // Re-sort & render
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
+        }
+        
+        // Apply filter tahun
+        function applyYearFilter(year) {
+            currentYear = year;
+            
+            // Update styling select
+            const yearSelect = document.getElementById('yearFilter');
+            yearSelect.classList.toggle('active', year !== 'all');
+            
+            // Re-sort & render
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            renderGallery();
+        }
+        
+        // Load more gallery
+        function loadMoreGallery() {
+            const prevCount = currentDisplayCount;
+            currentDisplayCount = Math.min(currentDisplayCount + ITEMS_PER_LOAD, filteredData.length);
+            
+            const galleryGrid = document.getElementById('galleryGrid');
+            const newItems = filteredData.slice(prevCount, currentDisplayCount);
+            
+            newItems.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.innerHTML = renderGalleryCard(item, prevCount + index);
+                const card = div.firstElementChild;
+                galleryGrid.appendChild(card);
+            });
+            
+            // Update tombol & counter
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const galleryCounter = document.getElementById('galleryCounter');
+            
+            if (currentDisplayCount >= filteredData.length) {
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i><span>Semua Foto Ditampilkan</span>';
+            } else {
+                const remaining = filteredData.length - currentDisplayCount;
+                loadMoreBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i><span>Tampilkan ${Math.min(ITEMS_PER_LOAD, remaining)} Foto Lagi</span>`;
+            }
+            
+            galleryCounter.textContent = `Menampilkan ${currentDisplayCount} dari ${filteredData.length} foto`;
+            
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+            
+            setTimeout(() => {
+                const newCards = galleryGrid.querySelectorAll('.gallery-card');
+                if (newCards[prevCount]) {
+                    newCards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+        
+        // Load gallery dari localStorage
+        function loadGallery() {
+            const stored = localStorage.getItem('galleryData');
+            
+            if (stored) {
+                galleryDataGlobal = JSON.parse(stored);
+            } else {
+                // Data default dengan tanggal (backward compatibility)
+                galleryDataGlobal = [
                     {
                         tag: 'Pupuk Anorganik',
                         title: 'Sampling Lot Urea Curah',
                         location: 'Gudang Pelindo, Surabaya',
                         description: 'Pengambilan contoh menggunakan metode tusuk (probe) pada 20 titik berbeda untuk memastikan homogenitas.',
-                        image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop'
+                        image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop',
+                        date: '2026-06-15'
                     },
                     {
                         tag: 'Chain of Custody',
                         title: 'Segel & Labeling Resmi',
                         location: 'Laboratorium PT. XYZ',
                         description: 'Penerapan segel hologram dan tanda tangan basah di atas kemasan sampel untuk menjamin keaslian.',
-                        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop'
+                        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop',
+                        date: '2026-05-20'
                     },
                     {
                         tag: 'Pestisida Cair',
                         title: 'Verifikasi Insektisida',
                         location: 'Pabrik Cikarang, Bekasi',
                         description: 'Penghomogenan cairan dalam tangki reaktor sebelum pengambilan contoh akhir (final batch).',
-                        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop'
+                        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop',
+                        date: '2026-04-10'
                     },
                     {
                         tag: 'Administrasi',
                         title: 'Penandatanganan BAS',
                         location: 'Kantor Regulator',
                         description: 'Validasi data hasil sampling melalui Berita Acara Sampling (BAS) yang disetujui dua belah pihak.',
-                        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'
+                        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
+                        date: '2025-12-05'
                     },
                     {
                         tag: 'Peralatan',
                         title: 'Preparasi Alat Sampling',
                         location: 'Area Steril',
                         description: 'Pembersihan alat stainless steel dengan alkohol teknis untuk mencegah kontaminasi silang antar lot.',
-                        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop'
+                        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=800&auto=format&fit=crop',
+                        date: '2025-10-18'
                     },
                     {
                         tag: 'Pupuk Organik',
                         title: 'Sampling Kompos Granul',
                         location: 'Pabrik Bogor',
                         description: 'Metode kuadran pada tumpukan curah untuk mendapatkan representasi kadar air yang akurat.',
-                        image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop'
+                        image: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?q=80&w=800&auto=format&fit=crop',
+                        date: '2025-08-22'
                     }
                 ];
                 
-                localStorage.setItem('galleryData', JSON.stringify(defaultData));
-                loadGallery();
+                localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
             }
+            
+            // Backward compatibility: tambahkan date jika tidak ada
+            let needUpdate = false;
+            galleryDataGlobal = galleryDataGlobal.map((item, index) => {
+                if (!item.date) {
+                    needUpdate = true;
+                    // Generate date berdasarkan index (data lama dianggap dari 2024)
+                    const month = String((index % 12) + 1).padStart(2, '0');
+                    const day = String((index % 28) + 1).padStart(2, '0');
+                    return { ...item, date: `2024-${month}-${day}` };
+                }
+                return item;
+            });
+            
+            if (needUpdate) {
+                localStorage.setItem('galleryData', JSON.stringify(galleryDataGlobal));
+            }
+            
+            // Populate dropdown tahun
+            populateYearFilter();
+            
+            // Initial sort (terbaru dulu)
+            filteredData = sortAndFilterData(galleryDataGlobal, currentFilter, currentYear);
+            
+            // Render
+            renderGallery();
         }
 
         document.addEventListener('DOMContentLoaded', loadGallery);
