@@ -496,6 +496,97 @@
 
         body::-webkit-scrollbar { width: 0; display: none; }
         body { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* ========================================
+   GOOGLE MAPS EMBED - CONTACT SECTION
+   ======================================== */
+.maps-wrapper {
+    margin-top: 25px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(6, 78, 59, 0.12);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+    padding: 3px;
+}
+.maps-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(6, 78, 59, 0.22);
+}
+.maps-inner {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    background: #f3f4f6;
+}
+.maps-inner iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+.maps-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 18px;
+    background: rgba(6, 78, 59, 0.08);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #064e3b;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.maps-label:hover {
+    background: #059669;
+    color: #ffffff;
+    transform: scale(1.03);
+}
+.maps-label i {
+    color: #dc2626;
+    transition: color 0.3s ease;
+}
+.maps-label:hover i {
+    color: #ffffff;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .maps-wrapper {
+        margin-top: 20px;
+        padding: 2px;
+    }
+    .maps-inner {
+        padding-bottom: 75%; /* Lebih tinggi di mobile (4:3) */
+    }
+    .maps-label {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .maps-inner {
+        padding-bottom: 100%; /* Square di HP kecil (1:1) */
+    }
+}
+    
+    
+    
+    
+    
     </style>
 </head>
 <body>
@@ -745,6 +836,35 @@
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-phone" style="color: var(--accent-gold); margin-right: 15px;"></i> +62 812-3456-7890</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppc.expert@email.com</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); margin-right: 15px;"></i> Mataram Lombok - NTB</div>
+                
+                <!-- 🗺️ Google Maps Embed -->
+    <div class="maps-wrapper">
+        <div class="maps-inner">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126647.40966537434!2d116.0598!3d-8.5833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbf9fd431a71d%3A0x4030bfbca7d3c40!2sMataram%2C%20West%20Nusa%20Tenggara!5e0!3m2!1sid!2sid!4v1720000000000"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi PPC Certified - Mataram, Lombok">
+            </iframe>
+        </div>
+    </div>
+    
+    <!-- Tombol buka di Google Maps (opsional tapi elegan) -->
+    <a href="https://maps.google.com/?q=Mataram,+Lombok,+NTB" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="maps-label">
+        <i class="fa-solid fa-map-location-dot"></i>
+        Buka di Google Maps
+    </a>
+                
+                
+                
+                
+                
+                
+                
                 </div>
                 <div class="contact-form">
                     <form id="whatsappForm" onsubmit="kirimKeWhatsApp(event)">
