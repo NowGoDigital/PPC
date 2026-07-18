@@ -36,27 +36,25 @@
         .section-title span { color: var(--primary-mid); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; display: block; margin-bottom: 15px; }
         .section-title h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--primary-dark); }
 
-        /* ✅ TAMBAHKAN INI - khusus section Profil */
-.about-content .section-title h2 {
-    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-    line-height: 1.3;
-    margin-bottom: 0;
-}
+        .about-content .section-title h2 {
+            font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+            line-height: 1.3;
+            margin-bottom: 0;
+        }
 
-.about-content .section-title {
-    margin-bottom: 20px !important;
-}
+        .about-content .section-title {
+            margin-bottom: 20px !important;
+        }
 
-        
         .btn-premium {
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: 8px; white-space: nowrap;
-    padding: 18px 45px; background: var(--accent-gold);
-    color: var(--primary-dark); font-weight: 700; border-radius: 50px;
-    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); position: relative;
-    overflow: hidden; z-index: 1; border: none; cursor: pointer;
-    width: 100%; text-align: center; font-family: inherit; font-size: 1rem; max-width: 100%;
-}
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; white-space: nowrap;
+            padding: 18px 45px; background: var(--accent-gold);
+            color: var(--primary-dark); font-weight: 700; border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); position: relative;
+            overflow: hidden; z-index: 1; border: none; cursor: pointer;
+            width: 100%; text-align: center; font-family: inherit; font-size: 1rem; max-width: 100%;
+        }
         .btn-premium:hover { transform: translateY(-3px); background: var(--white); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
         /* --- HEADER --- */
@@ -83,7 +81,7 @@
         .hero-text h1 span { color: var(--primary-mid); position: relative; display: inline-block; }
         .hero-text h1 span::after { content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 15px; background: var(--accent-gold); opacity: 0.3; z-index: -1; transform: skewX(-10deg); }
         .hero-text p { font-size: 1.2rem; color: #374151; margin-bottom: 40px; max-width: 90%; font-weight: 500; word-wrap: break-word; }
-        .hero-badges { display: flex; gap: 15px; margin-bottom: 35px; flex-wrap: wrap; }
+        .hero-badges { display: flex; gap: 15px; margin-bottom: 35px; flex-wrap: wrap; justify-content: flex-start; }
         .badge { background: rgba(255,255,255,0.5); border: 1px solid var(--primary-dark); color: var(--primary-dark); padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 8px; backdrop-filter: blur(5px); max-width: 100%; }
         .hero-image-container { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 100%; }
         .blob-bg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%); opacity: 0.15; border-radius: 50%; z-index: 0; animation: morph 8s ease-in-out infinite; }
@@ -136,9 +134,6 @@
         .cert-badge p { font-size: 0.7rem; color: #666; line-height: 1.3; margin-bottom: 6px; }
         .cert-badge .cert-status { display: inline-block; padding: 2px 10px; background: #d1fae5; color: var(--primary-mid); border-radius: 50px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3px; }
 
-        /* ============================================ */
-        /* === FEATURE LIST - COMPACT PADDING =========== */
-        /* ============================================ */
         .feature-list-compact {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -276,10 +271,50 @@
         .form-control:focus { outline: none; border-color: var(--accent-gold); background: #fff; box-shadow: 0 0 0 3px rgba(251,191,36,0.1); }
         textarea.form-control { resize: vertical; min-height: 100px; }
 
+        select.form-control {
+            cursor: pointer;
+            appearance: auto;
+            -webkit-appearance: auto;
+            -moz-appearance: auto;
+        }
+        select.form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(251,191,36,0.1);
+        }
+
+        /* ✅ INPUT GROUP WITH ICON */
+        .input-group {
+            position: relative;
+        }
+        .input-group .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-mid);
+            font-size: 0.95rem;
+            z-index: 2;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        .input-group .form-control {
+            padding-left: 45px;
+        }
+        .input-group:focus-within .input-icon {
+            color: var(--accent-gold);
+        }
+        /* Untuk textarea - icon di atas */
+        .input-group.textarea-group .input-icon {
+            top: 15px;
+            transform: none;
+        }
+
         /* --- FOOTER --- */
         footer { background: #022c22; color: rgba(255,255,255,0.7); padding: 80px 0 30px; font-size: 0.95rem; overflow: hidden; width: 100%; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 60px; width: 100%; }
-        .footer-col { min-width: 0; word-wrap: break-word; overflow-wrap: break-word; }
+        .footer-col { min-width: 0; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
         .footer-col h4 { color: var(--white); font-size: 1.2rem; margin-bottom: 25px; font-family: 'Playfair Display', serif; }
         .footer-about p { margin-bottom: 25px; line-height: 1.8; word-wrap: break-word; }
         .footer-links li { margin-bottom: 15px; }
@@ -315,7 +350,7 @@
             .hero-wrapper { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .hero-text h1 { font-size: 2.5rem; }
             .hero-text p { max-width: 100%; font-size: 1.05rem; }
-            .hero-badges { justify-content: center; }
+            .hero-badges { justify-content: center; gap: 10px; }
             .btn-group { justify-content: center; display: flex; }
             .hero-image-container { margin-top: 30px; }
             .hero-img-frame { max-width: 350px; margin: 0 auto; }
@@ -438,6 +473,8 @@
             .contact-form { padding: 30px 20px; }
             .form-control { padding: 12px; font-size: 0.9rem; }
             .form-label { font-size: 0.85rem; }
+            .input-group .form-control { padding-left: 40px; }
+            .input-group .input-icon { left: 12px; font-size: 0.85rem; }
             .contact-form form > div[style*="grid-template-columns"] { display: block !important; grid-template-columns: 1fr !important; }
             .contact-form form > div[style*="grid-template-columns"] > .form-group { margin-bottom: 20px; }
             footer { padding: 50px 0 20px; width: 100%; }
@@ -479,6 +516,8 @@
             .section-title h2 { font-size: 1.3rem; }
             .contact-info { padding: 25px 15px; }
             .contact-form { padding: 25px 15px; }
+            .input-group .form-control { padding-left: 38px; }
+            .input-group .input-icon { left: 10px; font-size: 0.8rem; }
             .company-card-icon { width: 45px; height: 45px; font-size: 1.2rem; }
             .cert-badge-icon { width: 40px; height: 40px; font-size: 1rem; }
             .experience-badge { padding: 8px 12px; gap: 7px; max-width: 145px; bottom: -12px; right: 0px; }
@@ -521,7 +560,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    padding-bottom: 56.25%;
     background: #f3f4f6;
 }
 .maps-inner iframe {
@@ -564,14 +603,13 @@
     color: #ffffff;
 }
 
-/* Responsive untuk mobile */
 @media (max-width: 768px) {
     .maps-wrapper {
         margin-top: 20px;
         padding: 2px;
     }
     .maps-inner {
-        padding-bottom: 75%; /* Lebih tinggi di mobile (4:3) */
+        padding-bottom: 75%;
     }
     .maps-label {
         font-size: 0.8rem;
@@ -581,10 +619,9 @@
 
 @media (max-width: 480px) {
     .maps-inner {
-        padding-bottom: 100%; /* Square di HP kecil (1:1) */
+        padding-bottom: 100%;
     }
 }
-    
     
  /* ========================================
    DOWNLOAD PDF CARD - CONTACT SECTION
@@ -619,7 +656,6 @@
     transform: translateY(-1px);
 }
 
-/* Shine effect saat hover */
 .download-pdf-link::before {
     content: '';
     position: absolute;
@@ -639,7 +675,6 @@
     left: 100%;
 }
 
-/* Badge PDF di pojok kanan atas */
 .pdf-badge {
     position: absolute;
     top: 10px;
@@ -656,7 +691,6 @@
     z-index: 2;
 }
 
-/* Icon lingkaran */
 .pdf-icon-wrapper {
     flex-shrink: 0;
     width: 58px;
@@ -678,7 +712,6 @@
     color: #e53e3e;
 }
 
-/* Text content */
 .pdf-content {
     flex: 1;
     z-index: 1;
@@ -711,7 +744,6 @@
     opacity: 0.8;
 }
 
-/* Arrow icon di kanan */
 .pdf-arrow {
     flex-shrink: 0;
     width: 36px;
@@ -730,7 +762,6 @@
     transform: translateX(4px);
 }
 
-/* Pulse animation untuk icon download */
 @keyframes pulseDownload {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(3px); }
@@ -739,7 +770,6 @@
     animation: pulseDownload 1s ease-in-out infinite;
 }
 
-/* Responsive Mobile */
 @media (max-width: 768px) {
     .download-pdf-link {
         padding: 18px 20px;
@@ -786,9 +816,7 @@
     .pdf-arrow {
         display: none;
     }
-}   
-    
-    
+}
     </style>
 </head>
 <body>
@@ -822,6 +850,7 @@
                 <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
                     <div class="hero-badges">
                         <div class="badge"><i class="fa-solid fa-certificate"></i> BNSP Certified</div>
+                        <div class="badge"><i class="fa-solid fa-award"></i> KAN Certified</div>
                         <div class="badge"><i class="fa-solid fa-scale-balanced"></i> Standar SNI</div>
                     </div>
                     <h1>Integritas Data <br><span>Sampling Agribisnis</span></h1>
@@ -863,7 +892,6 @@
     <section id="about" class="section-padding">
         <div class="container">
             <div class="about-grid">
-                <!-- KOLOM KIRI -->
                 <div class="about-img-wrapper" data-aos="fade-right">
                     <img src="PPC.jpg" alt="Professional PPC" class="about-img-main">
                     <div class="experience-badge">
@@ -874,7 +902,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- KOLOM KANAN -->
                 <div class="about-content" data-aos="fade-left">
                     <div class="section-title" style="text-align: left; margin-bottom: 25px;">
                         <span>Profil Ahli</span>
@@ -895,10 +922,7 @@
 
                     <p style="margin-bottom: 22px; color: #374151; text-align: justify; font-size: 0.95rem;">
                         Saya, <strong>P. Sudjudi BSC, SP</strong> selaku PPC dari CV. Bina Mahabbah Jaya Mataram memiliki 2 sertifikat kompetensi sebagai PPC</p>
-                     
 
-
-                    
                     <div class="dual-cert-wrapper">
                         <div class="cert-badge">
                             <h5>BNSP - LSP Pertanian Organik</h5>
@@ -914,7 +938,6 @@
                 </div>
             </div>
 
-            <!-- ✅ FEATURE LIST - COMPACT -->
             <ul class="feature-list-compact" data-aos="fade-up" data-aos-delay="200">
                 <li>
                     <div class="check-icon"><i class="fa-solid fa-map-location-dot"></i></div>
@@ -1034,48 +1057,35 @@
                     <h3 style="font-size: 2rem; margin-bottom: 20px;">Data Kontak</h3>
                     <p style="margin-bottom: 40px; opacity: 0.8;">Isi formulir di samping atau di bawah untuk terhubung langsung dengan kami via WhatsApp.</p>
                     
-                    
-                    <!-- 📄 Download PDF Brosur -->
-<div class="download-pdf-card">
+                    <div class="download-pdf-card">
     <a href="https://drive.google.com/uc?export=download&id=187Sl3yBP17kRqrr-DybVSAyO9wnO9BVd" 
-       target="_ <i class="fa-solid fa-file-pdf"blank" 
+       target="_blank" 
        rel="noopener noreferrer"
        class="download-pdf-link"
        download>
-        
-        <!-- Badge PDF -->
         <span class="pdf-badge">PDF</span>
-        
-        <!-- Icon PDF dalam lingkaran -->
         <div class="pdf-icon-wrapper">
             <i class="fa-solid fa-file-pdf"></i>
         </div>
-        
-        <!-- Text Content -->
         <div class="pdf-content">
             <div class="pdf-title">
                 Contoh Surat Permohonan
                 <i class="fa-solid fa-sparkles" style="color: var(--accent-gold); font-size: 0.6rem;"></i>
             </div>
-            
         </div>
-        
-        <!-- Arrow Icon -->
         <div class="pdf-arrow">
             <i class="fa-solid fa-arrow-down"></i>
         </div>
     </a>
 </div>                    
                     
-                    
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="color: var(--accent-gold); margin-right: 15px;"></i> ppcbinamahabbah@gmail.com</div>
                     <div style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold); margin-right: 15px;"></i> Mataram Lombok - NTB</div>
                 
-                <!-- 🗺️ Google Maps Embed -->
     <div class="maps-wrapper">
         <div class="maps-inner">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!4v1783920576702!6m8!1m7!1sA9O17Pib7jHuwWPoVQ-iiQ!2m2!1d-8.573283294574992!2d116.1093033592509!3f64.050934!4f0!5f0.7820865974627469"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3945.2870107721387!2d116.12981237501353!3d-8.56837709147573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMzQnMDYuMiJTIDExNsKwMDcnNTYuNiJF!5e0!3m2!1sid!2sid!4v1784361176260!5m2!1sid!2sid"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -1083,17 +1093,64 @@
             </iframe>
         </div>
     </div>
-    
                     
                 </div>
                 <div class="contact-form">
+                    <!-- ✅ FORM DENGAN ICON DI SETIAP FIELD -->
                     <form id="whatsappForm" onsubmit="kirimKeWhatsApp(event)">
-                        <div class="form-group"><label class="form-label">Nama Lengkap</label><input type="text" id="nama" class="form-control" placeholder="Masukkan nama lengkap Anda" required></div>
-                        <div class="form-group"><label class="form-label">Nama Perusahaan</label><input type="text" id="perusahaan" class="form-control" placeholder="PT / CV / UD ..." required></div>
-                        <div class="form-group"><label class="form-label">Alamat Lengkap Perusahaan</label><textarea id="alamat" class="form-control" rows="2" placeholder="Kota, Kecamatan, Jalan..." required></textarea></div>
+                        <!-- Nama Lengkap -->
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-user input-icon"></i>
+                                <input type="text" id="nama" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+                            </div>
+                        </div>
+                        <!-- Nama Perusahaan -->
+                        <div class="form-group">
+                            <label class="form-label">Nama Perusahaan</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-building input-icon"></i>
+                                <input type="text" id="perusahaan" class="form-control" placeholder="PT / CV / UD ..." required>
+                            </div>
+                        </div>
+                        <!-- Alamat Lengkap -->
+                        <div class="form-group">
+                            <label class="form-label">Alamat Lengkap Perusahaan</label>
+                            <div class="input-group textarea-group">
+                                <i class="fa-solid fa-location-dot input-icon"></i>
+                                <textarea id="alamat" class="form-control" rows="2" placeholder="Kota, Kecamatan, Jalan..." required></textarea>
+                            </div>
+                        </div>
+                        <!-- Jenis Layanan -->
+                        <div class="form-group">
+                            <label class="form-label">Jenis Layanan</label>
+                            <div class="input-group">
+                                <i class="fa-solid fa-list-check input-icon"></i>
+                                <select id="jenisLayanan" class="form-control" required>
+                                    <option value="" disabled selected>-- Pilih Jenis Layanan --</option>
+                                    <option value="Sampling Pupuk Organik">Sampling Pupuk Organik</option>
+                                    <option value="Sampling Pupuk An Organik">Sampling Pupuk An Organik</option>
+                                    <option value="Sampling Pestisida">Sampling Pestisida</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Email & No. HP (Grid 2 kolom) -->
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="form-group"><label class="form-label">Email</label><input type="email" id="email" class="form-control" placeholder="email@perusahaan.com" required></div>
-                            <div class="form-group"><label class="form-label">No. HP / WhatsApp</label><input type="tel" id="hp" class="form-control" placeholder="0812..." required></div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <div class="input-group">
+                                    <i class="fa-solid fa-envelope input-icon"></i>
+                                    <input type="email" id="email" class="form-control" placeholder="email@perusahaan.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">No. HP / WhatsApp</label>
+                                <div class="input-group">
+                                    <i class="fa-solid fa-mobile-screen input-icon"></i>
+                                    <input type="tel" id="hp" class="form-control" placeholder="0812..." required>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn-premium"><i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> Kirim ke WhatsApp</button>
                     </form>
@@ -1118,7 +1175,7 @@
                 </div>
                 <div class="footer-col"><h4>Navigasi</h4><ul class="footer-links"><li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Beranda</a></li><li><a href="#about"><i class="fa-solid fa-chevron-right"></i> Profil Ahli</a></li><li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Layanan Sampling</a></li><li><a href="#sop"><i class="fa-solid fa-chevron-right"></i> SOP Kerja</a></li></ul></div>
                 <div class="footer-col"><h4>Layanan</h4><ul class="footer-links"><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pupuk</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Sampling Pestisida</a></li><li><a href="#"><i class="fa-solid fa-chevron-right"></i> Konsultasi Regulasi</a></li></ul></div>
-                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jl. Hos Cokroaminoto No.68 Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>ppcbinamahabbah@gmail.com</span></li></ul></div>
+                <div class="footer-col"><h4>Hubungi Kami</h4><ul class="footer-contact"><li><i class="fa-solid fa-location-dot"></i><span>Jln Diponegoro No 30 Sayang Sayang - Mataram, Lombok - NTB</span></li><li><i class="fa-solid fa-phone"></i><span>+62 8175761165</span></li><li><i class="fa-solid fa-envelope"></i><span>ppcbinamahabbah@gmail.com</span></li></ul></div>
             </div>
             <div class="copyright"><p>&copy; 2026 DIGITALPro. All Rights Reserved.</p></div>
         </div>
@@ -1151,26 +1208,25 @@
                 icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars');
             });
         });
+
         function kirimKeWhatsApp(e) {
             e.preventDefault();
             const nama = document.getElementById('nama').value;
             const perusahaan = document.getElementById('perusahaan').value;
             const alamat = document.getElementById('alamat').value;
+            const jenisLayanan = document.getElementById('jenisLayanan').value;
             const email = document.getElementById('email').value;
             const hp = document.getElementById('hp').value;
             const nomorWA = "628175761165";
-            const pesan = `Halo Admin PPC Certified, saya ingin konsultasi terkait jasa sampling.%0A%0A*DATA PEMOHON:*%0A👤 Nama: ${nama}%0A🏢 Perusahaan: ${perusahaan}%0A📍 Alamat: ${alamat}%0A📧 Email: ${email}%0A📱 No. HP: ${hp}%0A%0AMohon info ketersediaan jadwal sampling. Terima kasih.`;
+            const pesan = `Halo Admin PPC Certified, saya ingin konsultasi terkait jasa sampling.%0A%0A*DATA PEMOHON:*%0A👤 Nama: ${nama}%0A🏢 Perusahaan: ${perusahaan}%0A📍 Alamat: ${alamat}%0A📋 Jenis Layanan: ${jenisLayanan}%0A📧 Email: ${email}%0A📱 No. HP: ${hp}%0A%0AMohon info ketersediaan jadwal sampling. Terima kasih.`;
             window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
         }
     </script>
-        <!-- ✅ Firebase SDK -->
+
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <script>
-        // ============================================================
-        //  ✅ KONFIGURASI FIREBASE — SAMA PERSIS DENGAN admin.html!
-        // ============================================================
         const firebaseConfig = {
             apiKey: "AIzaSyBVKTxJy8c-F-ljIe61NJPJHVhp-ufnyME",
             authDomain: "ppc-certified-859cf.firebaseapp.com",
@@ -1180,13 +1236,9 @@
             appId: "1:752025208586:web:5dd072c2fe6cbd3b199cf3"
         };
 
-        // Inisialisasi Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // ============================================================
-        //  VARIABEL GLOBAL
-        // ============================================================
         let galleryDataGlobal = [];
         let filteredData = [];
         let currentDisplayCount = 8;
@@ -1194,9 +1246,6 @@
         let currentFilter = 'newest';
         let currentYear = 'all';
 
-        // ============================================================
-        //  UTILITY FUNCTIONS
-        // ============================================================
         function formatTanggal(dateStr) {
             if (!dateStr) return '';
             const bulan = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
@@ -1365,12 +1414,7 @@
             }, 100);
         }
 
-        // ============================================================
-        //  ✅ FIREBASE: LOAD GALLERY DENGAN REALTIME LISTENER
-        // ============================================================
         function loadGalleryFromFirebase() {
-            // Realtime listener — gallery di halaman utama otomatis update
-            // saat admin menambah/edit/hapus data dari admin.html
             db.collection('gallery').onSnapshot((snapshot) => {
                 galleryDataGlobal = [];
                 snapshot.forEach((doc) => {
@@ -1382,7 +1426,6 @@
                 renderGallery();
             }, (error) => {
                 console.error('Error loading gallery from Firebase:', error);
-                // Fallback: tampilkan pesan error di galeri
                 document.getElementById('galleryGrid').innerHTML = `
                     <div class="gallery-empty">
                         <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
@@ -1392,38 +1435,23 @@
             });
         }
 
-        // ============================================================
-        //  INISIALISASI
-        // ============================================================
         document.addEventListener('DOMContentLoaded', loadGalleryFromFirebase);
     </script>
 
-
-   
-<!-- ✅ Firebase Analytics Tracking - MENGGUNAKAN INSTANCE YANG SUDAH ADA -->
-<script>
-    // ============================================================
-    //  ✅ ANALYTICS TRACKING - Menggunakan Firebase yang sudah di-init
-    //  PENTING: Jangan inisialisasi ulang, pakai instance dari gallery
-    // ============================================================
-    
-    // Gunakan db yang sudah ada dari blok gallery di atas
+    <script>
     const analyticsDb = firebase.firestore();
 
     function trackVisitor() {
-        // Cegah tracking berulang dalam 1 sesi browser
         if (sessionStorage.getItem('visitorTracked')) return;
 
         const now = new Date();
         const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
-        // Detect device
         const ua = navigator.userAgent;
         let device = 'Desktop';
         if (/Mobi|Android/i.test(ua)) device = 'Mobile';
         else if (/Tablet|iPad/i.test(ua)) device = 'Tablet';
 
-        // Detect browser
         let browser = 'Lainnya';
         if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
         else if (ua.includes('Firefox')) browser = 'Firefox';
@@ -1432,7 +1460,6 @@
 
         console.log('📊 Tracking visitor...', { device, browser, date: today });
 
-        // 1. Simpan detail kunjungan
         analyticsDb.collection('analytics').add({
             timestamp: now.toISOString(),
             page: 'index.html',
@@ -1443,7 +1470,6 @@
         .then(() => console.log('✅ Visitor data saved'))
         .catch(err => console.error('❌ Analytics write error:', err));
 
-        // 2. Update ringkasan harian (increment counter)
         const summaryRef = analyticsDb.collection('analyticsSummary').doc('daily');
         summaryRef.get()
             .then(doc => {
@@ -1461,55 +1487,43 @@
         sessionStorage.setItem('visitorTracked', 'true');
     }
 
-    // Track saat halaman dibuka
     document.addEventListener('DOMContentLoaded', trackVisitor);
 </script>
 
-<!-- 🔒 Proteksi Konten - Level 1 -->
+<!-- 🔒 Proteksi Konten -->
 <script>
 (function() {
-    // 1. Disable Klik Kanan
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
         showToastCustom('🔒 Konten dilindungi. Klik kanan dinonaktifkan.');
         return false;
     });
 
-    // 2. Disable Shortcut Keyboard
     document.addEventListener('keydown', function(e) {
-        // Ctrl+U (View Source)
         if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
-        // Ctrl+S (Save)
         if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
-        // Ctrl+C (Copy)
         if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
-        // Ctrl+Shift+I / F12 (DevTools)
         if ((e.ctrlKey && e.shiftKey && e.key === 'I') || e.key === 'F12') { 
             e.preventDefault(); 
             showToastCustom('🔒 Developer Tools dinonaktifkan.');
             return false; 
         }
-        // Ctrl+Shift+J (Console)
         if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
-        // Ctrl+P (Print)
         if (e.ctrlKey && e.key === 'p') { e.preventDefault(); return false; }
     });
 
-    // 3. Disable Text Selection (tapi tetap bisa klik tombol/link)
     document.addEventListener('selectstart', function(e) {
-        if (!['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
             e.preventDefault();
             return false;
         }
     });
 
-    // 4. Disable Drag Gambar
     document.addEventListener('dragstart', function(e) {
         e.preventDefault();
         return false;
     });
 
-    // Custom Toast Notification
     function showToastCustom(message) {
         const toast = document.createElement('div');
         toast.style.cssText = `
@@ -1529,7 +1543,6 @@
         }, 2500);
     }
 
-    // Tambahkan CSS animasi
     const style = document.createElement('style');
     style.textContent = `
         @keyframes slideInToast {
@@ -1537,7 +1550,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
         body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-        input, textarea { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+        input, textarea, select { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
     `;
     document.head.appendChild(style);
 
@@ -1545,8 +1558,5 @@
 })();
 </script>
 
-
-    
 </body>
 </html>
-
