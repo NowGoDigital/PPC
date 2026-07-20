@@ -568,65 +568,62 @@
 .maps-inner {
     position: relative !important;
 }
+/* Map Address Overlay */
 .map-address-overlay {
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 10px;
+    left: 10px;
     background: rgba(6, 78, 59, 0.95);
     color: #fff;
-    padding: 14px 18px;
-    border-radius: 12px;
-    max-width: 280px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 220px;
     z-index: 10;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(251, 191, 36, 0.3);
     animation: fadeInMap 0.8s ease-out 0.5s both;
 }
-@keyframes fadeInMap {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 .map-address-overlay .addr-title {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     color: #fbbf24;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     font-family: 'Playfair Display', serif;
 }
 .map-address-overlay .addr-text {
-    font-size: 0.78rem;
-    line-height: 1.5;
+    font-size: 0.68rem;
+    line-height: 1.4;
     color: rgba(255,255,255,0.9);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .map-address-overlay .addr-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     color: #fbbf24;
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 700;
     text-decoration: none;
     transition: gap 0.3s;
 }
 .map-address-overlay .addr-link:hover {
-    gap: 10px;
+    gap: 8px;
     color: #fff;
 }
 @media (max-width: 576px) {
     .map-address-overlay {
-        top: 10px;
-        left: 10px;
-        right: 10px;
+        top: 8px;
+        left: 8px;
+        right: 8px;
         max-width: none;
-        padding: 10px 14px;
+        padding: 7px 10px;
     }
-    .map-address-overlay .addr-title { font-size: 0.82rem; }
-    .map-address-overlay .addr-text { font-size: 0.72rem; }
+    .map-address-overlay .addr-title { font-size: 0.72rem; }
+    .map-address-overlay .addr-text { font-size: 0.65rem; }
 }
         
 .maps-inner iframe {
